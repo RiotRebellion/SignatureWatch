@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SignatureWatch.Domain.Entities\SignatureWatch.Domain.Entities.csproj" />
     <ProjectReference Include="..\SignatureWatch.UseCases.Interfaces\SignatureWatch.UseCases.Interfaces.csproj" />
   </ItemGroup>
