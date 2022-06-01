@@ -13,15 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UseCases", "UseCases", "{ED
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.Domain.Entities", "SignatureWatch.Domain.Entities\SignatureWatch.Domain.Entities.csproj", "{4382111D-B074-46EB-AEC8-D697BAE441AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignatureWatch.UseCases.Interfaces", "SignatureWatch.UseCases.Interfaces\SignatureWatch.UseCases.Interfaces.csproj", "{377EAF2D-D935-48B0-8D6C-F5383F409C3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.UseCases.Interfaces", "SignatureWatch.UseCases.Interfaces\SignatureWatch.UseCases.Interfaces.csproj", "{377EAF2D-D935-48B0-8D6C-F5383F409C3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignatureWatch.Infrastructure.Persistence", "SignatureWatch.Infrastructure.Persistence\SignatureWatch.Infrastructure.Persistence.csproj", "{3FAAA0DE-B94E-4B4B-AB32-2AAA9F9AA567}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.Infrastructure.Persistence", "SignatureWatch.Infrastructure.Persistence\SignatureWatch.Infrastructure.Persistence.csproj", "{3FAAA0DE-B94E-4B4B-AB32-2AAA9F9AA567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignatureWatch.UseCases.Features", "SignatureWatch.UseCases.Features\SignatureWatch.UseCases.Features.csproj", "{E042A823-8387-45EE-800D-94C4A9F80E06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.UseCases.Features", "SignatureWatch.UseCases.Features\SignatureWatch.UseCases.Features.csproj", "{E042A823-8387-45EE-800D-94C4A9F80E06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignatureWatch.Presentation.WebApp", "SignatureWatch.Presentation.WebApp\SignatureWatch.Presentation.WebApp.csproj", "{13C22931-2704-4ADD-A9FE-8FD8855E8873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.Presentation.WebApp", "SignatureWatch.Presentation.WebApp\SignatureWatch.Presentation.WebApp.csproj", "{13C22931-2704-4ADD-A9FE-8FD8855E8873}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignatureWatch.UseCases.Contracts", "SignatureWatch.UseCases.Contracts\SignatureWatch.UseCases.Contracts.csproj", "{67AFF9B4-3C58-440D-8401-7C713171F3CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.UseCases.Contracts", "SignatureWatch.UseCases.Contracts\SignatureWatch.UseCases.Contracts.csproj", "{67AFF9B4-3C58-440D-8401-7C713171F3CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5BDBFD33-FF30-41B4-AAC3-43BFBC61E614}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignatureWatch.Tests.UnitTests", "SignatureWatch.Tests.UnitTests\SignatureWatch.Tests.UnitTests.csproj", "{7EAD4A24-C379-477A-9736-431769C554D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{67AFF9B4-3C58-440D-8401-7C713171F3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67AFF9B4-3C58-440D-8401-7C713171F3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67AFF9B4-3C58-440D-8401-7C713171F3CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAD4A24-C379-477A-9736-431769C554D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAD4A24-C379-477A-9736-431769C554D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAD4A24-C379-477A-9736-431769C554D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAD4A24-C379-477A-9736-431769C554D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{E042A823-8387-45EE-800D-94C4A9F80E06} = {ED5AD024-7941-4BDE-8A52-5C6F40D05FFE}
 		{13C22931-2704-4ADD-A9FE-8FD8855E8873} = {BC42BAC4-83EC-4BFF-89C2-D1522CC5C213}
 		{67AFF9B4-3C58-440D-8401-7C713171F3CD} = {ED5AD024-7941-4BDE-8A52-5C6F40D05FFE}
+		{7EAD4A24-C379-477A-9736-431769C554D5} = {5BDBFD33-FF30-41B4-AAC3-43BFBC61E614}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19CB54DE-A8DC-4B8F-8429-630EA9C74B1B}
