@@ -4,20 +4,17 @@ using SignatureWatch.UseCases.Contracts.DTOs;
 
 namespace SignatureWatch.UseCases.Contracts.Profiles
 {
-    public class RegistrationProfile : Profile
+    public class LoginProfile : Profile
     {
-        public RegistrationProfile()
+        public LoginProfile()
         {
-            CreateMap<RegistrationDTO, User>()
+            CreateMap<User, LoginDTO>()
                 .ForMember(dest =>
                     dest.Username,
                     opt => opt.MapFrom(src => src.Username))
                 .ForMember(dest =>
                     dest.Password,
-                    opt => opt.MapFrom(src => src.Password))
-                .ForMember(dest =>
-                    dest.Email,
-                    opt => opt.MapFrom(src => src.Email));
+                    opt => opt.MapFrom(src => src.Password));
         }
     }
 }

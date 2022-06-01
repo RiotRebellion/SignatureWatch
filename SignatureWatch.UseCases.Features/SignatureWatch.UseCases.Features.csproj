@@ -9,10 +9,11 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <ProjectReference Include="..\SignatureWatch.UseCases.Interfaces\SignatureWatch.UseCases.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
