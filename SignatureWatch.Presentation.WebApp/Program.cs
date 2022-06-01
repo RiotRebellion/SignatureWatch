@@ -1,8 +1,12 @@
+using AutoMapper;
 using MediatR;
 using SignatureWatch.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDatabase(builder.Configuration.GetSection("Database"));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("V1", new Microsoft.OpenApi.Models.OpenApiInfo
