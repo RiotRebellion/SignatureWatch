@@ -1,5 +1,6 @@
 using AutoMapper;
 using MediatR;
+using Microsoft.OpenApi.Models;
 using SignatureWatch.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +10,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("V1", new Microsoft.OpenApi.Models.OpenApiInfo
+    c.SwaggerDoc("V1", new OpenApiInfo
     {
         Version = "V1",
         Title = "SignatureWatchAPI",
@@ -19,14 +20,10 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-app.UseMvc();
-
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SignatureWatchApi V!");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SignatureWatchApi V1");
 });
-
-app.MapGet("/", () => "Hello World!");
 
 app.Run();
