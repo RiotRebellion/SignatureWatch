@@ -9,10 +9,17 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <Folder Include="UserFeatures\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SignatureWatch.Domain.Entities\SignatureWatch.Domain.Entities.csproj" />
+    <ProjectReference Include="..\SignatureWatch.UseCases.Contracts\SignatureWatch.UseCases.Contracts.csproj" />
+    <ProjectReference Include="..\SignatureWatch.UseCases.Interfaces\SignatureWatch.UseCases.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
