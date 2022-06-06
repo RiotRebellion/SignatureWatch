@@ -17,5 +17,10 @@ namespace SignatureWatch.Infrastructure.Persistence.Contexts
         DbSet<Signature> Signatures { get; set; }
 
         DbSet<User> Users { get; set; }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
+        }
     }
 }
