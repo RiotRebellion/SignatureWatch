@@ -1,20 +1,22 @@
-using AutoMapper;
-using MediatR;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
 using SignatureWatch.Infrastructure.Persistence;
+using SignatureWatch.UseCases.Contracts;
+using SignatureWatch.UseCases.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDatabase(builder.Configuration.GetSection("Database"));
 builder.Services.AddControllers();
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddDatabase(builder.Configuration.GetSection("Database"));
+builder.Services.AddContracts();
+builder.Services.AddFeatures();
+
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("V1", new OpenApiInfo
+    c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Version = "V1",
+        Version = "v1",
         Title = "SignatureWatchAPI",
         Description = "ASP.NET 6 web api"
     });
@@ -24,6 +26,8 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.UseDeveloperExceptionPage();
+
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
