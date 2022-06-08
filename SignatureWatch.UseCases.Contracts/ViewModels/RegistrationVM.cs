@@ -2,7 +2,7 @@
 
 namespace SignatureWatch.UseCases.Contracts.ViewModels
 {
-    public class RegistrationVM
+    public class RegistrationViewModel
     {
         [Required]
         public string Username { get; set; }

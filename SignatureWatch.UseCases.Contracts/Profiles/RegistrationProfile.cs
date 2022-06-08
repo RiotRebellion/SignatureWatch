@@ -8,7 +8,7 @@ namespace SignatureWatch.UseCases.Contracts.Profiles
     {
         public RegistrationProfile()
         {
-            CreateMap<RegistrationVM, User>()
+            CreateMap<RegistrationViewModel, User>()
                 .ForMember(dest =>
                     dest.Username,
                     opt => opt.MapFrom(src => src.Username))

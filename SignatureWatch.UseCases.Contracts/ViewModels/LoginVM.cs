@@ -1,6 +1,6 @@
 ﻿namespace SignatureWatch.UseCases.Contracts.ViewModels
 {
-    public class AuthVM
+    public class LoginViewModel
     {
         public string Username { get; set; }
 
