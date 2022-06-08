@@ -3,13 +3,12 @@ using MediatR;
 using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.ViewModels;
 using SignatureWatch.UseCases.Interfaces.Persistence;
-using System.Linq;
 
 namespace SignatureWatch.UseCases.Features.UserFeatures.Commands
 {
     public class CreateUserCommand : IRequest<string>
     {
-        public RegistrationVM RegistrationVM = new RegistrationVM();
+        public RegistrationViewModel RegistrationVM { get; set; }
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, string>
         {
@@ -24,7 +23,7 @@ namespace SignatureWatch.UseCases.Features.UserFeatures.Commands
             //TODO: add validation
             public async Task<string> Handle(CreateUserCommand command, CancellationToken cancellationToken)
             {                
-                var user = _mapper.Map<User>(command);
+                var user = _mapper.Map<User>(command.RegistrationVM);
 
                 if (_dbContext.Set<User>().Where(i => i.Username == user.Username).Any())
                 {

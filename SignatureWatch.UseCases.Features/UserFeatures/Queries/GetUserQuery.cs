@@ -8,7 +8,7 @@ namespace SignatureWatch.UseCases.Features.UserFeatures.Queries
 {
     public class GetUserQuery : IRequest<string>
     {
-        public AuthVM AuthVM { get; set; }
+        public LoginViewModel AuthVM { get; set; }
 
         public class GetUserQueryHandle : IRequestHandler<GetUserQuery, string>
         {
@@ -34,7 +34,7 @@ namespace SignatureWatch.UseCases.Features.UserFeatures.Queries
                 }
                 else 
                 {
-                    return null;
+                    return null
                 }
 
             }
