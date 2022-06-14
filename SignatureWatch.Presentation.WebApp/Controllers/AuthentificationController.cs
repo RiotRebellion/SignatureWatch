@@ -1,32 +1,37 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SignatureWatch.UseCases.Contracts.ViewModels;
-using SignatureWatch.UseCases.Features.UserFeatures.Commands;
-using SignatureWatch.UseCases.Features.UserFeatures.Queries;
+using SignatureWatch.Presentation.WebApp.Controllers.Base;
+using SignatureWatch.UseCases.Contracts.DTO;
+using SignatureWatch.UseCases.Features.Commands.UserCommands;
+using SignatureWatch.UseCases.Features.Queries.UserQueries;
 
 namespace SignatureWatch.Presentation.WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AuthentificationController : ControllerBase
+    public class AuthentificationController : ApiController
     {
-        private IMediator _mediator;
-
-        public IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
-
         [HttpPost]
         [Route("Login")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel loginVM)
+        public async Task<ActionResult> Login([FromBody] LoginDTO loginVM)
         {
-            return Ok(await Mediator.Send(new GetUserQuery()));
+            if (ModelState.IsValid)
+            {
+                return Ok(await Mediator.Send(new LoginQuery()));
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
+            
         }
 
         [HttpPost]
         [Route("Register")]
-        public async Task<IActionResult> Register(RegistrationViewModel registrationVM)
+        public async Task<IActionResult> Register([FromBody] RegistrationDTO registrationDTO)
         {
-            return Ok(await Mediator.Send(new CreateUserCommand() { RegistrationVM = registrationVM}));
+            return Ok(await Mediator.Send(new CreateUserCommand() { RegistrationDTO = registrationDTO}));
         }
     }
 }

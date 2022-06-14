@@ -1,16 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SignatureWatch.Presentation.WebApp.Controllers.Base;
 
 namespace SignatureWatch.Presentation.WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SignatureController : ControllerBase
+    public class SignatureController : ApiController
     {
-        private IMediator _mediator;
-
-        public IMediator Mediator => _mediator ??= HttpContext.RequestServices.GetRequiredService<IMediator>();
-
         [HttpGet]
         public async Task<IActionResult> GetSignatures()
         {

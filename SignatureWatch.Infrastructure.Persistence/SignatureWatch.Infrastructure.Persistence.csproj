@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SignatureWatch.Domain.Entities\SignatureWatch.Domain.Entities.csproj" />
-    <ProjectReference Include="..\SignatureWatch.UseCases.Interfaces\SignatureWatch.UseCases.Interfaces.csproj" />
+    <ProjectReference Include="..\SignatureWatch.UseCases.Gateways\SignatureWatch.UseCases.Gateways.csproj" />
   </ItemGroup>
 
 </Project>

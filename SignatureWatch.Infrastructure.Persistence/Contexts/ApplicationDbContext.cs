@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignatureWatch.Domain.Entities;
-using SignatureWatch.UseCases.Interfaces.Persistence;
+using SignatureWatch.UseCases.Gateways;
 
 namespace SignatureWatch.Infrastructure.Persistence.Contexts
 {

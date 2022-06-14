@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SignatureWatch.Domain.Entities\SignatureWatch.Domain.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

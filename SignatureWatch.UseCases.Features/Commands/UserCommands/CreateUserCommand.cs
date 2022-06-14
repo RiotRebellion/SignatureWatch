@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
 using MediatR;
 using SignatureWatch.Domain.Entities;
-using SignatureWatch.UseCases.Contracts.ViewModels;
-using SignatureWatch.UseCases.Interfaces.Persistence;
+using SignatureWatch.UseCases.Contracts.DTO;
+using SignatureWatch.UseCases.Contracts.Responses;
+using SignatureWatch.UseCases.Gateways;
 
-namespace SignatureWatch.UseCases.Features.UserFeatures.Commands
+namespace SignatureWatch.UseCases.Features.Commands.UserCommands
 {
-    public class CreateUserCommand : IRequest<string>
+    public class CreateUserCommand : IRequest<AuthentificationResponse>
     {
-        public RegistrationViewModel RegistrationVM { get; set; }
+        public RegistrationDTO RegistrationDTO { get; set; }
 
-        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, string>
+        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, AuthentificationResponse>
         {
             private readonly IDbContext _dbContext;
             private readonly IMapper _mapper;
@@ -20,14 +21,16 @@ namespace SignatureWatch.UseCases.Features.UserFeatures.Commands
                 (_dbContext, _mapper) = (dbContext, mapper);
             }
 
-            //TODO: add validation
             public async Task<string> Handle(CreateUserCommand command, CancellationToken cancellationToken)
-            {                
-                var user = _mapper.Map<User>(command.RegistrationVM);
+            {
+                var user = _mapper.Map<User>(command.RegistrationDTO);
 
                 if (_dbContext.Set<User>().Where(i => i.Username == user.Username).Any())
                 {
-                    return "Данный пользователь уже зарегистрирован в системе";
+                    return new AuthentificationResponse
+                    {
+                        
+                    }
                 }
                 {
                     _dbContext.Set<User>().Add(user);

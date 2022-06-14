@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SignatureWatch.Domain.Entities;
-using SignatureWatch.UseCases.Contracts.ViewModels;
+using SignatureWatch.UseCases.Contracts.DTO;
 
 namespace SignatureWatch.UseCases.Contracts.Profiles
 {
@@ -8,7 +8,7 @@ namespace SignatureWatch.UseCases.Contracts.Profiles
     {
         public LoginProfile()
         {
-            CreateMap<User, LoginViewModel>()
+            CreateMap<User, LoginDTO>()
                 .ForMember(dest =>
                     dest.Username,
                     opt => opt.MapFrom(src => src.Username))

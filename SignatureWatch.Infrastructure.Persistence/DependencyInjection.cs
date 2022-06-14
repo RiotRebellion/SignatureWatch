@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SignatureWatch.Infrastructure.Persistence.Contexts;
-using SignatureWatch.UseCases.Interfaces.Persistence;
+using SignatureWatch.UseCases.Gateways;
 
 namespace SignatureWatch.Infrastructure.Persistence
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SignatureWatch.UseCases.Interfaces.Persistence
+namespace SignatureWatch.UseCases.Gateways
 {
     public interface IDbContext
     {
