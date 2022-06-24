@@ -14,24 +14,30 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
         [HttpPost]
         [Route("Login")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login([FromBody] LoginDTO loginVM)
+        public async Task<ActionResult> Login([FromBody] LoginDTO LoginDTO)
         {
             if (ModelState.IsValid)
             {
-                return Ok(await Mediator.Send(new LoginQuery()));
+                return Ok(await Mediator.Send(new LoginQuery { LoginDTO = LoginDTO }));
             }
             else
             {
                 return BadRequest(ModelState);
             }
-            
         }
 
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationDTO registrationDTO)
         {
-            return Ok(await Mediator.Send(new CreateUserCommand() { RegistrationDTO = registrationDTO}));
+            if (ModelState.IsValid)
+            {
+                return Ok(await Mediator.Send(new CreateUserCommand() { RegistrationDTO = registrationDTO }));
+            }
+            else
+            {
+                return BadRequest(ModelState);
+            }
         }
     }
 }

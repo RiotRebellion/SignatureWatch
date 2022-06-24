@@ -1,26 +1,9 @@
-using Microsoft.OpenApi.Models;
-using SignatureWatch.Infrastructure.Persistence;
-using SignatureWatch.UseCases.Contracts;
-using SignatureWatch.UseCases.Features;
+using SignatureWatch.Presentation.WebApp.Installers.Extentions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.InstallServicesInAssembly(builder.Configuration);
 
-builder.Services.AddDatabase(builder.Configuration.GetSection("Database"));
-builder.Services.AddContracts();
-builder.Services.AddFeatures();
-
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Version = "v1",
-        Title = "SignatureWatchAPI",
-        Description = "ASP.NET 6 web api"
-    });
-});
 
 var app = builder.Build();
 

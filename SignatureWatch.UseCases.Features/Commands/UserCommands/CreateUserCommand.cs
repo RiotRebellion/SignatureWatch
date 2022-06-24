@@ -3,7 +3,7 @@ using MediatR;
 using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.DTO;
 using SignatureWatch.UseCases.Contracts.Responses;
-using SignatureWatch.UseCases.Gateways;
+using SignatureWatch.UseCases.Features.Services.Interfaces;
 
 namespace SignatureWatch.UseCases.Features.Commands.UserCommands
 {
@@ -13,30 +13,19 @@ namespace SignatureWatch.UseCases.Features.Commands.UserCommands
 
         public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, AuthentificationResponse>
         {
-            private readonly IDbContext _dbContext;
+            private readonly IAuthentification _authentification;
             private readonly IMapper _mapper;
 
-            public CreateUserCommandHandler(IDbContext dbContext, IMapper mapper)
+            public CreateUserCommandHandler(IAuthentification authentification, IMapper mapper)
             {
-                (_dbContext, _mapper) = (dbContext, mapper);
+                (_authentification, _mapper) = (authentification, mapper);
             }
 
-            public async Task<string> Handle(CreateUserCommand command, CancellationToken cancellationToken)
+            public async Task<AuthentificationResponse> Handle(CreateUserCommand command, CancellationToken cancellationToken)
             {
                 var user = _mapper.Map<User>(command.RegistrationDTO);
 
-                if (_dbContext.Set<User>().Where(i => i.Username == user.Username).Any())
-                {
-                    return new AuthentificationResponse
-                    {
-                        
-                    }
-                }
-                {
-                    _dbContext.Set<User>().Add(user);
-                    await _dbContext.SaveChangesAsync();
-                    return "Пользователь создан";
-                }
+                return await _authentification.RegisterAsync(user);
             }
         }
     }
