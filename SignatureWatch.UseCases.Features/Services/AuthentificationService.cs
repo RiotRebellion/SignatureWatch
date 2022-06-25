@@ -39,10 +39,10 @@ namespace SignatureWatch.UseCases.Features.Services
 
         public async Task<AuthentificationResponse> RegisterAsync(User user)
         {
-            var existingUser = _dbContext.Set<User>().
+            var existingUser = await _dbContext.Set<User>().
                 FirstOrDefaultAsync(u => u.Username == user.Username && u.Email == user.Email);
 
-            if (existingUser == null) 
+            if (existingUser != null) 
             {
                 return new AuthentificationResponse
                 {
@@ -51,6 +51,7 @@ namespace SignatureWatch.UseCases.Features.Services
             }
 
             await _dbContext.Set<User>().AddAsync(user);
+            await _dbContext.SaveChangesAsync();
 
             return await GenerateAuthentificationResponseForUserAsync(user);
         }
