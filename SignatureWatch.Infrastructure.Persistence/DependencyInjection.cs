@@ -10,7 +10,7 @@ namespace SignatureWatch.Infrastructure.Persistence
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) => services
             .AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("Postges")))
-            .AddScoped<IDbContext>(services => services.GetRequiredService<ApplicationDbContext>());
+                options.UseNpgsql(configuration.GetConnectionString("Postges")), ServiceLifetime.Transient)
+            .AddTransient<IDbContext>(services => services.GetRequiredService<ApplicationDbContext>());
     }
 }
