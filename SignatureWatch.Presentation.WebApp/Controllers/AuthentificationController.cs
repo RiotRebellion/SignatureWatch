@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using SignatureWatch.Presentation.WebApp.Controllers.Base;
 using SignatureWatch.UseCases.Contracts.DTO;
@@ -13,31 +13,16 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
     {
         [HttpPost]
         [Route("Login")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login([FromBody] LoginDTO LoginDTO)
+        public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            if (ModelState.IsValid)
-            {
-                return Ok(await Mediator.Send(new LoginQuery { LoginDTO = LoginDTO }));
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
+            return Ok(await Mediator.Send(new LoginQuery { LoginDTO = loginDTO }));
         }
 
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationDTO registrationDTO)
         {
-            if (ModelState.IsValid)
-            {
-                return Ok(await Mediator.Send(new CreateUserCommand() { RegistrationDTO = registrationDTO }));
-            }
-            else
-            {
-                return BadRequest(ModelState);
-            }
+            return Ok(await Mediator.Send(new CreateUserCommand() { RegistrationDTO = registrationDTO }));
         }
     }
 }

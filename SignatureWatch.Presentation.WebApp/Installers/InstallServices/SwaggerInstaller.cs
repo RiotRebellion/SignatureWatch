@@ -1,5 +1,6 @@
 ﻿using Microsoft.OpenApi.Models;
 using SignatureWatch.Presentation.WebApp.Installers.Interfaces;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SignatureWatch.Presentation.WebApp.Installers.InstallServices
 {
@@ -27,7 +28,6 @@ namespace SignatureWatch.Presentation.WebApp.Installers.InstallServices
                         Type = ReferenceType.SecurityScheme
                     }}, new List<string>()}
                 });
-
             });
         }
     }

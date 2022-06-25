@@ -10,10 +10,11 @@
   "profiles": {
     "SignatureWatch.Presentation.WebApp": {
       "commandName": "Project",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5271",
+      "applicationUrl": "http://localhost:54321",
       "dotnetRunMessages": true
     },
     "IIS Express": {

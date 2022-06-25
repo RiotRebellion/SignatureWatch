@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignatureWatch.UseCases.Features.Common.Utilities
+namespace SignatureWatch.UseCases.Features.Common.Utils
 {
-    public abstract class StringUtility
+    public class StringUtil
     {
         protected internal bool IsValueHasLettersOnly(string value) => value.All(Char.IsLetter);
 

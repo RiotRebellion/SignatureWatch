@@ -1,7 +1,6 @@
-﻿using AutoMapper;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SignatureWatch.Domain.Entities;
-using SignatureWatch.UseCases.Contracts.DTO;
 using SignatureWatch.UseCases.Contracts.Responses;
 using SignatureWatch.UseCases.Features.Options;
 using SignatureWatch.UseCases.Features.Services.Interfaces;
@@ -24,7 +23,8 @@ namespace SignatureWatch.UseCases.Features.Services
 
         public async Task<AuthentificationResponse> LoginAsync(User user)
         {
-            var isUserExist = _dbContext.Set<User>().FindAsync(user.Username, user.Password);
+            var isUserExist = await _dbContext.Set<User>()
+                .FirstOrDefaultAsync(u => u.Username == user.Username && u.Password == user.Password); 
 
             if (isUserExist == null)
             {
@@ -39,7 +39,8 @@ namespace SignatureWatch.UseCases.Features.Services
 
         public async Task<AuthentificationResponse> RegisterAsync(User user)
         {
-            var existingUser = _dbContext.Set<User>().FindAsync(user.Username, user.Email);
+            var existingUser = _dbContext.Set<User>().
+                FirstOrDefaultAsync(u => u.Username == user.Username && u.Email == user.Email);
 
             if (existingUser == null) 
             {
@@ -68,7 +69,7 @@ namespace SignatureWatch.UseCases.Features.Services
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Audience = "http://localhost:59386",
+                Audience = "SignatureWatch",
                 Expires = DateTime.UtcNow.Add(_jwtSettings.TokenLifeTime),
                 SigningCredentials = 
                 new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

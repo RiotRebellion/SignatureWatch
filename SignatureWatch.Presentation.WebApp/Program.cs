@@ -1,4 +1,5 @@
 using SignatureWatch.Presentation.WebApp.Installers.Extentions;
+using SignatureWatch.Presentation.WebApp.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCustomExceptionMiddleware();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

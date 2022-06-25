@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="FluentValidation" Version="11.1.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.1.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
@@ -18,6 +19,10 @@
     <ProjectReference Include="..\SignatureWatch.Domain.Entities\SignatureWatch.Domain.Entities.csproj" />
     <ProjectReference Include="..\SignatureWatch.UseCases.Contracts\SignatureWatch.UseCases.Contracts.csproj" />
     <ProjectReference Include="..\SignatureWatch.UseCases.Gateways\SignatureWatch.UseCases.Gateways.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Exceptions\" />
   </ItemGroup>
 
 </Project>
