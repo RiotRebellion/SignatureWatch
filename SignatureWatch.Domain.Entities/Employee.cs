@@ -9,5 +9,7 @@ namespace SignatureWatch.Domain.Entities
         public string SecondName { get; set; }
 
         public string LastName { get; set; }
+
+        public string Department { get; set; }
     }
 }
