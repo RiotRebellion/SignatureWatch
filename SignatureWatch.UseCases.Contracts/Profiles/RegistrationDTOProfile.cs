@@ -4,9 +4,9 @@ using SignatureWatch.UseCases.Contracts.DTO;
 
 namespace SignatureWatch.UseCases.Contracts.Profiles
 {
-    public class RegistrationProfile : Profile
+    public class RegistrationDTOProfile : Profile
     {
-        public RegistrationProfile()
+        public RegistrationDTOProfile()
         {
             CreateMap<RegistrationDTO, User>()
                 .ForMember(dest =>
