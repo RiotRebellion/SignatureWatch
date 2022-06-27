@@ -22,8 +22,8 @@ namespace SignatureWatch.UseCases.Features.Queries.EmployeeQueries
                                                                                                         
             public async Task<IEnumerable<EmployeeViewModel>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
             {
-                var employeeList = await _dbContext.Set<User>().ToListAsync();
-                var result = _mapper.Map<EmployeeViewModel>(employeeList);
+                IEnumerable<Employee> signatureList = await _dbContext.Set<Employee>().ToListAsync();
+                var result = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeViewModel>>(signatureList);
                 return result;
             }
         }
