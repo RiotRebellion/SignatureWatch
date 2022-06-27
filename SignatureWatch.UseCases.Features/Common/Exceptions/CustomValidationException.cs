@@ -2,27 +2,27 @@
 
 namespace SignatureWatch.UseCases.Features.Common.Exceptions
 {
-    public class ValidationException : Exception
+    public class CustomValidationException : Exception
     {
-        public ValidationException()
+        public CustomValidationException()
             : base("One or more validation failures have occured")
         {
             Errors = new Dictionary<string, string[]>();
         }
 
-        public ValidationException(string message)
+        public CustomValidationException(string message)
             : base(message)
         {
             Errors = new Dictionary<string, string[]>();
         }
 
-        public ValidationException(string message, Exception innerException)
+        public CustomValidationException(string message, Exception innerException)
             : base(message, innerException)
         {
             Errors = new Dictionary<string, string[]>();
         }
 
-        public ValidationException(IEnumerable<ValidationFailure> failures)
+        public CustomValidationException(IEnumerable<ValidationFailure> failures)
             : this()
         {
             var failureGroups = failures
