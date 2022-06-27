@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SignatureWatch.UseCases.Features.Common.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -31,9 +32,12 @@ namespace SignatureWatch.Presentation.WebApp.Middlewares
             var result = string.Empty;
             switch (exception)
             {
-                case ValidationException validationException:
+                case CustomValidationException validationException:
                     code = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException);
+                    break;
+                case NotFoundException notFoundException:
+                    code = HttpStatusCode.NotFound;
                     break;
             }
             context.Response.ContentType = "application/json";
