@@ -35,6 +35,7 @@ namespace SignatureWatch.Presentation.WebApp.Middlewares
                     code = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException);
                     break;
+
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;
@@ -44,7 +45,7 @@ namespace SignatureWatch.Presentation.WebApp.Middlewares
                 result = JsonSerializer.Serialize(new { error = exception.Message });
             }
 
-            context.Response.WriteAsync(result);
+            await context.Response.WriteAsync(result);
         }
     }
 }
