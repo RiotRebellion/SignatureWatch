@@ -22,7 +22,7 @@ namespace SignatureWatch.UseCases.Features.Queries.SignatureQueries
             
             public async Task<IEnumerable<SignatureDTO>> Handle(GetAllSignaturesQuery request, CancellationToken cancellationToken)
             {
-                var signatures = await _dbContext.Set<Signature>().ToListAsync();
+                var signatures = await _dbContext.Set<Signature>().Include(x => x.Owner).ToListAsync();
                 var result = _mapper.Map<IEnumerable<SignatureDTO>>(signatures);
                 return result;
             }
