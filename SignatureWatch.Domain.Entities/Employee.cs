@@ -4,12 +4,10 @@ namespace SignatureWatch.Domain.Entities
 {
     public class Employee : Entity
     {
-        public string FirstName { get; set; }
-
-        public string SecondName { get; set; }
-
-        public string LastName { get; set; }
+        public string Name { get; set; }
 
         public string Department { get; set; }
+
+        public EmployeeStatus EmployeeStatus { get; set; }
     }
 }

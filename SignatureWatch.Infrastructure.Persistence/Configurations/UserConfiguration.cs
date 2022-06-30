@@ -9,7 +9,6 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations
     {
         protected override void ConfigureOtherProperties(EntityTypeBuilder<User> builder)
         {
-            builder.Property(p => p.Id).HasDefaultValueSql("NEWID()");
             builder.Property(p => p.Username).IsRequired();
             builder.Property(p => p.Password).IsRequired();
             builder.Property(p => p.Email).IsRequired();

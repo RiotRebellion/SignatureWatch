@@ -10,7 +10,7 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations.Base
         public void Configure(EntityTypeBuilder<TEntity> builder)
         {
             builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).ValueGeneratedOnAdd();
+            builder.Property(p => p.Id).HasDefaultValueSql("NEWID()");
 
             ConfigureOtherProperties(builder);
         }
