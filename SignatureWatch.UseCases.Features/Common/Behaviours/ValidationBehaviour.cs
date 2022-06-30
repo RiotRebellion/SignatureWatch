@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using SignatureWatch.UseCases.Features.Common.Exceptions;
 
 namespace SignatureWatch.UseCases.Features.Common.Behaviours
 {
@@ -25,7 +26,7 @@ namespace SignatureWatch.UseCases.Features.Common.Behaviours
                     .ToList();
 
                 if (validationFailures.Any())
-                    throw new ValidationException(validationFailures);
+                    throw new CustomValidationException(validationFailures);
             }
             return await next();
         }

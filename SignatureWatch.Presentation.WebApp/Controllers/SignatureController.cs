@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SignatureWatch.Presentation.WebApp.Controllers.Base;
+using SignatureWatch.UseCases.Features.Queries.SignatureQueries;
 
 namespace SignatureWatch.Presentation.WebApp.Controllers
 {
@@ -11,7 +12,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSignatures()
         {
-            return Ok();
+            return Ok(await Mediator.Send(new GetAllSignaturesQuery()));
         }
     }
 }

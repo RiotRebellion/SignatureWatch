@@ -11,15 +11,15 @@ namespace SignatureWatch.UseCases.Features.Queries.SignatureQueries
     {
         public class GetAllSignaturesQueryHandler : IRequestHandler<GetAllSignaturesQuery, IEnumerable<SignatureDTO>>
         {
-            private readonly IDbContext _dbContext;
             private readonly IMapper _mapper;
+            private readonly IDbContext _dbContext;
 
             public GetAllSignaturesQueryHandler(IDbContext dbContext, IMapper mapper)
             {
                 _dbContext = dbContext;
                 _mapper = mapper;
             }
-
+            
             public async Task<IEnumerable<SignatureDTO>> Handle(GetAllSignaturesQuery request, CancellationToken cancellationToken)
             {
                 var signatures = await _dbContext.Set<Signature>().ToListAsync();

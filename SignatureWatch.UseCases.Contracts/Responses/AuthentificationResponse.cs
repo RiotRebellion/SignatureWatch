@@ -1,11 +1,9 @@
-﻿namespace SignatureWatch.UseCases.Contracts.Responses
+﻿using SignatureWatch.UseCases.Contracts.Responses.Base;
+
+namespace SignatureWatch.UseCases.Contracts.Responses
 {
-    public class AuthentificationResponse
+    public class AuthentificationResponse : BaseResponse
     {
-        public bool IsSuccess { get; set; }
-
         public string Token { get; set; }
-
-        public string[] Errors { get; set; }
      }
 }
