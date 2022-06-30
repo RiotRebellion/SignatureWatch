@@ -15,39 +15,40 @@ namespace SignatureWatch.UseCases.Contracts.Profiles
                     opt => opt.MapFrom(src => src.SerialNumber))
                 .ForMember(dest =>
                     dest.PublicKeyStartDate,
-                    opt => opt.ConvertUsing<DateTimeToDateOnlyConverter, DateTime>())
+                    opt => opt.MapFrom(src => src.PublicKeyStartDate))
                 .ForMember(dest =>
                     dest.PublicKeyEndDate,
-                    opt => opt.ConvertUsing<DateTimeToDateOnlyConverter, DateTime>())
+                    opt => opt.MapFrom(src => src.PublicKeyEndDate))
                 .ForMember(dest =>
                     dest.PrivateKeyStartDate,
-                    opt => opt.ConvertUsing<DateTimeToDateOnlyConverter, DateTime>())
+                    opt => opt.MapFrom(src => src.PrivateKeyStartDate))
                 .ForMember(dest =>
                     dest.PrivateKeyEndDate,
-                    opt => opt.ConvertUsing<DateTimeToDateOnlyConverter, DateTime>())
+                    opt => opt.MapFrom(src => src.PrivateKeyEndDate))
                 .ForMember(dest =>
                     dest.SignatureType,
-                    opt => opt.MapFrom(src => src.SignatureType));
+                    opt => opt.MapFrom(src => src.SignatureType))
+                .ReverseMap();
 
-            CreateMap<SignatureDTO, Signature>()
-                .ForMember(dest =>
-                    dest.SerialNumber,
-                    opt => opt.MapFrom(src => src.SerialNumber))
-                .ForMember(dest =>
-                    dest.PublicKeyStartDate,
-                    opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
-                .ForMember(dest =>
-                    dest.PublicKeyEndDate,
-                    opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
-                .ForMember(dest =>
-                    dest.PrivateKeyStartDate,
-                    opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
-                .ForMember(dest =>
-                    dest.PrivateKeyEndDate,
-                    opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
-                .ForMember(dest =>
-                    dest.SignatureType,
-                    opt => opt.MapFrom(src => src.SignatureType));
+            //CreateMap<SignatureDTO, Signature>()
+            //    .ForMember(dest =>
+            //        dest.SerialNumber,
+            //        opt => opt.MapFrom(src => src.SerialNumber))
+            //    .ForMember(dest =>
+            //        dest.PublicKeyStartDate,
+            //        opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
+            //    .ForMember(dest =>
+            //        dest.PublicKeyEndDate,
+            //        opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
+            //    .ForMember(dest =>
+            //        dest.PrivateKeyStartDate,
+            //        opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
+            //    .ForMember(dest =>
+            //        dest.PrivateKeyEndDate,
+            //        opt => opt.ConvertUsing<DateOnlyToDateTimeConverter, DateOnly>())
+            //    .ForMember(dest =>
+            //        dest.SignatureType,
+            //        opt => opt.MapFrom(src => src.SignatureType));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SignatureWatch.UseCases.Contracts.Responses.Base
 {
-    public abstract class BaseResponse
+    public class BaseResponse
     {
         public bool IsSuccess { get; set; }
 

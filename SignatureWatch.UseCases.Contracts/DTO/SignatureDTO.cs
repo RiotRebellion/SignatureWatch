@@ -4,13 +4,13 @@
     {
         public string SerialNumber { get; set; }
 
-        public DateOnly PublicKeyStartDate { get; set; }
+        public DateTime PublicKeyStartDate { get; set; }
 
-        public DateOnly PublicKeyEndDate { get; set; }
+        public DateTime PublicKeyEndDate { get; set; }
 
-        public DateOnly PrivateKeyStartDate { get; set; }
+        public DateTime PrivateKeyStartDate { get; set; }
 
-        public DateOnly PrivateKeyEndDate { get; set; }
+        public DateTime PrivateKeyEndDate { get; set; }
 
         public SignatureTypeDTO SignatureType { get; set; }
 
