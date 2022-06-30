@@ -16,6 +16,8 @@ namespace SignatureWatch.Domain.Entities
 
         public SignatureType SignatureType { get; set; }
 
+        public Guid OwnerId { get; set; }
+
         public Employee Owner { get; set; }
     }
 }
