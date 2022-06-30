@@ -56,7 +56,7 @@ namespace SignatureWatch.UseCases.Features.Services
             return await GenerateAuthentificationResponseForUserAsync(user);
         }
 
-        private Task<AuthentificationResponse> GenerateAuthentificationResponseForUserAsync(User user)
+        private async Task<AuthentificationResponse> GenerateAuthentificationResponseForUserAsync(User user)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
@@ -78,7 +78,7 @@ namespace SignatureWatch.UseCases.Features.Services
 
             var token = jwtHandler.CreateToken(tokenDescriptor);
 
-            return Task.FromResult(new AuthentificationResponse
+            return await Task.FromResult(new AuthentificationResponse
             {
                 IsSuccess = true,
                 Token = jwtHandler.WriteToken(token)
