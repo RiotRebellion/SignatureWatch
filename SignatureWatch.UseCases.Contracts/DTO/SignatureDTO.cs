@@ -1,6 +1,6 @@
-﻿namespace SignatureWatch.UseCases.Contracts.ViewModels
+﻿namespace SignatureWatch.UseCases.Contracts.DTO
 {
-    public class SignatureViewModel
+    public class SignatureDTO
     {
         public string SerialNumber { get; set; }
 
@@ -12,8 +12,8 @@
 
         public DateOnly PrivateKeyEndDate { get; set; }
 
-        public SignatureTypeViewModel SignatureType { get; set; }
+        public SignatureTypeDTO SignatureType { get; set; }
 
-        public EmployeeViewModel Owner { get; set; }
+        public EmployeeDTO Owner { get; set; }
     }
 }
