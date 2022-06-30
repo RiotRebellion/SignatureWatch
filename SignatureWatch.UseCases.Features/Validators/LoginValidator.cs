@@ -9,14 +9,12 @@ namespace SignatureWatch.UseCases.Features.Validators
         public LoginValidator(StringUtil stringUtil)
         {
             RuleFor(x => x.Username)
-                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Введите логин")
                 .Length(3, 16).WithMessage("Длина логина должа быть между 3 и 16")
                 .Must(stringUtil.IsValueHasLettersOnly).WithMessage("Числа в логине недопустимы")
                 .Matches("[A-Za_z]*").WithMessage("Допустимы только латинские символы");
 
             RuleFor(x => x.Password)
-                .Cascade(CascadeMode.StopOnFirstFailure)
                 .NotEmpty().WithMessage("Введите пароль");
 
             Transform(x => x.Username, stringUtil.ParseToLower);
