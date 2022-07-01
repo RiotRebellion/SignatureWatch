@@ -2,7 +2,7 @@
 using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.DTO;
 
-namespace SignatureWatch.UseCases.Contracts.Profiles
+namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
 {
     public class RegistrationDTOProfile : Profile
     {

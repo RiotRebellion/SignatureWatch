@@ -6,6 +6,8 @@ namespace SignatureWatch.Domain.Entities
     {
         public string Name { get; set; }
 
+        public string Post { get; set; }
+
         public string Department { get; set; }
 
         public EmployeeStatus EmployeeStatus { get; set; }

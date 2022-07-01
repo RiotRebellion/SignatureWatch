@@ -1,16 +1,16 @@
 ﻿using SignatureWatch.UseCases.Contracts.Enums;
 
-namespace SignatureWatch.UseCases.Contracts.DTO
+namespace SignatureWatch.UseCases.Contracts.ViewModels
 {
-    public class EmployeeDTO
+    public class EmployeeViewModel
     {
         public Guid Id { get; set; }
 
         public string Name { get; set; }
 
-        public string Department { get; set; }
-
         public string Post { get; set; }
+
+        public string Department { get; set; }
 
         public EmployeeStatusContract EmployeeStatus { get; set; }
     }

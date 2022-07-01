@@ -13,6 +13,9 @@ namespace SignatureWatch.UseCases.Features.Validators
             RuleFor(x => x.Department)
                 .NotEmpty().WithMessage("Department should not be empty");
 
+            RuleFor(x => x.Post)
+                .NotEmpty().WithMessage("Post should not be empty");
+
             RuleFor(x => x.EmployeeStatus)
                 .NotEmpty().WithMessage("EmployeeStatus should not be empty");
         }

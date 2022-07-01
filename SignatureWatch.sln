@@ -27,8 +27,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.Tests.UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SignatureWatch.UseCases.Gateways", "SignatureWatch.UseCases.Gateways\SignatureWatch.UseCases.Gateways.csproj", "{EB395DD9-2A33-4FE9-8745-5ACA8EAD7636}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "SignatureWatch.Presentation.WebUI", "SignatureWatch.Presentation.WebUI\SignatureWatch.Presentation.WebUI.esproj", "{ECB52D8B-F340-4642-A1FB-AB53CFB87B58}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,12 +61,6 @@ Global
 		{EB395DD9-2A33-4FE9-8745-5ACA8EAD7636}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB395DD9-2A33-4FE9-8745-5ACA8EAD7636}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB395DD9-2A33-4FE9-8745-5ACA8EAD7636}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECB52D8B-F340-4642-A1FB-AB53CFB87B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECB52D8B-F340-4642-A1FB-AB53CFB87B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECB52D8B-F340-4642-A1FB-AB53CFB87B58}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{ECB52D8B-F340-4642-A1FB-AB53CFB87B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECB52D8B-F340-4642-A1FB-AB53CFB87B58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECB52D8B-F340-4642-A1FB-AB53CFB87B58}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,7 +73,6 @@ Global
 		{67AFF9B4-3C58-440D-8401-7C713171F3CD} = {ED5AD024-7941-4BDE-8A52-5C6F40D05FFE}
 		{7EAD4A24-C379-477A-9736-431769C554D5} = {5BDBFD33-FF30-41B4-AAC3-43BFBC61E614}
 		{EB395DD9-2A33-4FE9-8745-5ACA8EAD7636} = {ED5AD024-7941-4BDE-8A52-5C6F40D05FFE}
-		{ECB52D8B-F340-4642-A1FB-AB53CFB87B58} = {BC42BAC4-83EC-4BFF-89C2-D1522CC5C213}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19CB54DE-A8DC-4B8F-8429-630EA9C74B1B}

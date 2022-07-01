@@ -10,7 +10,7 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
 {
     public class CreateEmployeeCommand : IRequest<BaseResponse>
     {
-        public EmployeeDTO EmployeeDTO;
+        public EmployeeDTO EmployeeDTO { get; set; } 
 
         public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, BaseResponse>
         {
@@ -28,7 +28,10 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
                 var employee = _mapper.Map<Employee>(command.EmployeeDTO);
 
                 var existingEmployee = await _dbContext.Set<Employee>()
-                    .FirstOrDefaultAsync(x => x.Name == employee.Name && x.Department == x.Department);
+                    .FirstOrDefaultAsync(x => 
+                    x.Name == employee.Name && 
+                    x.Department == employee.Department &&
+                    x.Post == employee.Post);
 
                 if (existingEmployee == null)
                 {

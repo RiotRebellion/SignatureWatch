@@ -2,18 +2,21 @@
 using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.DTO;
 
-namespace SignatureWatch.UseCases.Contracts.Profiles
+namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
 {
-    public class EmployeeProfile : Profile
+    public class EmployeeDTOProfile : Profile
     {
-        public EmployeeProfile()
+        public EmployeeDTOProfile()
         {
             CreateMap<Employee, EmployeeDTO>()
                 .ForMember(dest =>
                     dest.Name,
-                    opt => opt.MapFrom(src => src.Name)).
-                ForMember(dest =>
+                    opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest =>
                     dest.Department,
+                    opt => opt.MapFrom(src => src.Department))
+                .ForMember(dest =>
+                    dest.Post,
                     opt => opt.MapFrom(src => src.Department))
                 .ForMember(dest =>
                     dest.EmployeeStatus,

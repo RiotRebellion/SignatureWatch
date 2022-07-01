@@ -3,13 +3,13 @@ using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.Converters;
 using SignatureWatch.UseCases.Contracts.DTO;
 
-namespace SignatureWatch.UseCases.Contracts.Profiles
+namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
 {
-    public class SignatureProfile : Profile
+    public class SignatureDTOProfile : Profile
     {
-        public SignatureProfile()
+        public SignatureDTOProfile()
         {
-            CreateMap<Signature, SignatureDTO>()
+            CreateMap<SignatureDTO, Signature>()
                 .ForMember(dest =>
                     dest.SerialNumber,
                     opt => opt.MapFrom(src => src.SerialNumber))
@@ -27,8 +27,7 @@ namespace SignatureWatch.UseCases.Contracts.Profiles
                     opt => opt.MapFrom(src => src.PrivateKeyEndDate))
                 .ForMember(dest =>
                     dest.SignatureType,
-                    opt => opt.MapFrom(src => src.SignatureType))
-                .ReverseMap();
+                    opt => opt.MapFrom(src => src.SignatureType));
 
             //CreateMap<SignatureDTO, Signature>()
             //    .ForMember(dest =>
