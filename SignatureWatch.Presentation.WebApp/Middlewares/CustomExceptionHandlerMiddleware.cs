@@ -36,9 +36,6 @@ namespace SignatureWatch.Presentation.WebApp.Middlewares
                     code = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException);
                     break;
-                case NotFoundException notFoundException:
-                    code = HttpStatusCode.NotFound;
-                    break;
             }
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)code;

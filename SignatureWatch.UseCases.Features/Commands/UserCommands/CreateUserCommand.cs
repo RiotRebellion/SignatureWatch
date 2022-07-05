@@ -21,9 +21,9 @@ namespace SignatureWatch.UseCases.Features.Commands.UserCommands
                 (_authentification, _mapper) = (authentification, mapper);
             }
 
-            public async Task<AuthentificationResponse> Handle(CreateUserCommand command, CancellationToken cancellationToken)
+            public async Task<AuthentificationResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
-                var user = _mapper.Map<User>(command.RegistrationDTO);
+                var user = _mapper.Map<User>(request.RegistrationDTO);
 
                 return await _authentification.RegisterAsync(user);
             }

@@ -11,6 +11,7 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
 {
     public class UpdateEmployeeCommand : IRequest<BaseResponse>
     {
+        public Guid Guid { get; set; }
         public EmployeeDTO EmployeeDTO { get; set; }
 
         public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, BaseResponse>
@@ -26,7 +27,7 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
             public async Task<BaseResponse> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
             {
                 var existingEmployee = await _dbContext.Set<Employee>()
-                    .FirstOrDefaultAsync(x => x.Id == request.EmployeeDTO.Id);
+                    .FirstOrDefaultAsync(x => x.Guid == request.Guid);
 
                 if (existingEmployee == null)
                     return await Task.FromResult(new BaseResponse
@@ -35,6 +36,7 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
                     });
 
                 var employee = _mapper.Map<Employee>(request.EmployeeDTO);
+                employee.Guid = request.Guid;
 
                 _dbContext.Set<Employee>().Update(employee);
                 await _dbContext.SaveChangesAsync();

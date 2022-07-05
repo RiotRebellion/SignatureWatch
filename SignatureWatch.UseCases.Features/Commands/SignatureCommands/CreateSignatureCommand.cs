@@ -23,9 +23,9 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                 _mapper = mapper;
             }
 
-            public async Task<BaseResponse> Handle(CreateSignatureCommand command, CancellationToken cancellationToken)
+            public async Task<BaseResponse> Handle(CreateSignatureCommand request, CancellationToken cancellationToken)
             {
-                var signature = _mapper.Map<Signature>(command.SignatureDTO);
+                var signature = _mapper.Map<Signature>(request.SignatureDTO);
 
                 //Проверка существования пользователя
                 var existingEmployee = await _dbContext.Set<Employee>()
@@ -40,7 +40,7 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                 }
                 else
                 {
-                    signature.OwnerId = existingEmployee.Id;
+                    signature.OwnerId = existingEmployee.Guid;
                     signature.Owner = null;
                 }
 

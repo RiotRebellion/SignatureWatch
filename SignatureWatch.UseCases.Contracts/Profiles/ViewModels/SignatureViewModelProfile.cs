@@ -10,9 +10,6 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.ViewModels
         {
             CreateMap<Signature, SignatureViewModel>()
                 .ForMember(dest =>
-                    dest.Id,
-                    opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest =>
                     dest.SerialNumber,
                     opt => opt.MapFrom(src => src.SerialNumber))
                 .ForMember(dest =>
@@ -29,13 +26,13 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.ViewModels
                     opt => opt.MapFrom(src => src.PrivateKeyEndDate))
                 .ForMember(dest =>
                     dest.SignatureType,
-                    opt => opt.MapFrom(src => src.SignatureType))
-                .ForMember(dest =>
-                    dest.EmployeeName,
-                    opt => opt.MapFrom(src => src.Owner.Name));
+                    opt => opt.MapFrom(src => src.SignatureType));
 
             CreateMap<Signature, SignatureDetailedViewModel>()
                 .IncludeBase<Signature, SignatureViewModel>()
+                .ForMember(dest =>
+                    dest.EmployeeName,
+                    opt => opt.MapFrom(src => src.Owner.Name))
                 .ForMember(dest =>
                     dest.EmployeeDepartment,
                     opt => opt.MapFrom(src => src.Owner.Department))

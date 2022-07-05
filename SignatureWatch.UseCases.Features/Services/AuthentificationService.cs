@@ -63,7 +63,7 @@ namespace SignatureWatch.UseCases.Features.Services
 
             var claims = new List<Claim>
             {
-                new Claim("Id", user.Id.ToString()),
+                new Claim("Guid", user.Guid.ToString()),
                 new Claim("UserName", user.Username),
             };
 

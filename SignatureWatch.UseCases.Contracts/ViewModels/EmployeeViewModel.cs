@@ -4,7 +4,7 @@ namespace SignatureWatch.UseCases.Contracts.ViewModels
 {
     public class EmployeeViewModel
     {
-        public Guid Id { get; set; }
+        public Guid Guid { get; set; }
 
         public string Name { get; set; }
 

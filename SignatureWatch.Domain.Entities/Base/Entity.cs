@@ -5,6 +5,6 @@ namespace SignatureWatch.Domain.Entities.Base
     public abstract class Entity
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Guid { get; set; }
     }
 }

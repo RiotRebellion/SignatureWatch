@@ -26,12 +26,8 @@ namespace SignatureWatch.UseCases.Features.Queries.EmployeeQueries
             public async Task<EmployeeViewModel> Handle(GetEmployeeByIdQuery query, CancellationToken cancellationToken)
             {
                 var employee = await _dbcontext.Set<Employee>()
-                    .FirstOrDefaultAsync(x => x.Id == query.Id);
-
-                if (employee == null) throw new NotFoundException();
-
-                var result = _mapper.Map<EmployeeViewModel>(employee);
-                return result;
+                    .FirstOrDefaultAsync(x => x.Guid == query.Id);
+                return _mapper.Map<EmployeeViewModel>(employee);
             }
         }
     }

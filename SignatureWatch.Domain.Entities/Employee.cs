@@ -11,5 +11,7 @@ namespace SignatureWatch.Domain.Entities
         public string Department { get; set; }
 
         public EmployeeStatus EmployeeStatus { get; set; }
+
+        public ICollection<Signature>? Signatures { get; set; }
     }
 }

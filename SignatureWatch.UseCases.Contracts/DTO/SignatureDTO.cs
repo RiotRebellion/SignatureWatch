@@ -5,9 +5,6 @@ namespace SignatureWatch.UseCases.Contracts.DTO
 {
     public class SignatureDTO
     {
-        [JsonIgnore]
-        public Guid Guid { get; set; }
-
         public string SerialNumber { get; set; }
 
         public DateTime PublicKeyStartDate { get; set; }

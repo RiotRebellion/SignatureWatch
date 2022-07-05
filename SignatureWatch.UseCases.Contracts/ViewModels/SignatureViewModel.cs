@@ -9,7 +9,7 @@ namespace SignatureWatch.UseCases.Contracts.ViewModels
 {
     public class SignatureViewModel
     {
-        public Guid Id { get; set; }
+        public Guid Guid { get; set; }
 
         public string SerialNumber { get; set; }
 
@@ -22,7 +22,5 @@ namespace SignatureWatch.UseCases.Contracts.ViewModels
         public DateTime PrivateKeyEndDate { get; set; }
 
         public SignatureTypeContract SignatureType { get; set; }
-
-        public string EmployeeName { get; set; }
     }
 }

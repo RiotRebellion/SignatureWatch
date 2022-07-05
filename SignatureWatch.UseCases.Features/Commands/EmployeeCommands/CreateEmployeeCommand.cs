@@ -23,9 +23,9 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
                 _mapper = mapper;
             }
 
-            public async Task<BaseResponse> Handle(CreateEmployeeCommand command, CancellationToken cancellationToken)
+            public async Task<BaseResponse> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
             {
-                var employee = _mapper.Map<Employee>(command.EmployeeDTO);
+                var employee = _mapper.Map<Employee>(request.EmployeeDTO);
 
                 var existingEmployee = await _dbContext.Set<Employee>()
                     .FirstOrDefaultAsync(x => 
@@ -36,6 +36,7 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
                 if (existingEmployee == null)
                 {
                     await _dbContext.Set<Employee>().AddAsync(employee);
+                    await _dbContext.SaveChangesAsync();
                     return await Task.FromResult(new BaseResponse { IsSuccess = true });
                 }
                 return await Task.FromResult(new BaseResponse
