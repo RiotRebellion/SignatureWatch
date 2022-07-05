@@ -17,7 +17,7 @@ namespace SignatureWatch.UseCases.Features.Validators
                 .NotEmpty().WithMessage("Post should not be empty");
 
             RuleFor(x => x.EmployeeStatus)
-                .NotEmpty().WithMessage("EmployeeStatus should not be empty");
+                .IsInEnum().WithMessage("EmployeeStatus should not be empty");
         }
     }
 }
