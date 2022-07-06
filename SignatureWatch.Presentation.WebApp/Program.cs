@@ -10,14 +10,14 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
-
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SignatureWatchApi V1");
-    });
+    app.UseDeveloperExceptionPage();  
 }
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SignatureWatchApi V1");
+});
 
 app.UseCustomExceptionMiddleware();
 app.UseRouting();

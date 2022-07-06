@@ -10,7 +10,7 @@ namespace SignatureWatch.UseCases.Features.Queries.EmployeeQueries
 {
     public class GetEmployeeByIdQuery : IRequest<EmployeeViewModel>
     {
-        public Guid Id { get; set; }
+        public Guid Guid { get; set; }
 
         public class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeViewModel>
         {
@@ -26,7 +26,7 @@ namespace SignatureWatch.UseCases.Features.Queries.EmployeeQueries
             public async Task<EmployeeViewModel> Handle(GetEmployeeByIdQuery query, CancellationToken cancellationToken)
             {
                 var employee = await _dbcontext.Set<Employee>()
-                    .FirstOrDefaultAsync(x => x.Guid == query.Id);
+                    .FirstOrDefaultAsync(x => x.Guid == query.Guid);
                 return _mapper.Map<EmployeeViewModel>(employee);
             }
         }

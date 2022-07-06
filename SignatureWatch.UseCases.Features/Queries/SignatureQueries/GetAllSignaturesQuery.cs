@@ -8,9 +8,9 @@ using SignatureWatch.UseCases.Gateways;
 
 namespace SignatureWatch.UseCases.Features.Queries.SignatureQueries
 {
-    public class GetAllSignaturesQuery : IRequest<IEnumerable<SignatureDetailedViewModel>>
+    public class GetAllSignaturesQuery : IRequest<IEnumerable<SignatureViewModel>>
     {
-        public class GetAllSignaturesQueryHandler : IRequestHandler<GetAllSignaturesQuery, IEnumerable<SignatureDetailedViewModel>>
+        public class GetAllSignaturesQueryHandler : IRequestHandler<GetAllSignaturesQuery, IEnumerable<SignatureViewModel>>
         {
             private readonly IMapper _mapper;
             private readonly IDbContext _dbContext;
@@ -21,10 +21,10 @@ namespace SignatureWatch.UseCases.Features.Queries.SignatureQueries
                 _mapper = mapper;
             }
             
-            public async Task<IEnumerable<SignatureDetailedViewModel>> Handle(GetAllSignaturesQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<SignatureViewModel>> Handle(GetAllSignaturesQuery request, CancellationToken cancellationToken)
             {
                 var signatures = await _dbContext.Set<Signature>().Include(x => x.Owner).ToListAsync();
-                return _mapper.Map<IEnumerable<SignatureDetailedViewModel>>(signatures);
+                return _mapper.Map<IEnumerable<SignatureViewModel>>(signatures);
             }
         }
     }

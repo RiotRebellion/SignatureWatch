@@ -22,5 +22,8 @@ namespace SignatureWatch.UseCases.Contracts.ViewModels
         public DateTime PrivateKeyEndDate { get; set; }
 
         public SignatureTypeContract SignatureType { get; set; }
+
+        public string EmployeeName { get; set; }
+
     }
 }

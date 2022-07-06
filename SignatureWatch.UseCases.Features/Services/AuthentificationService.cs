@@ -13,12 +13,12 @@ namespace SignatureWatch.UseCases.Features.Services
 {
     internal class AuthentificationService : IAuthentification
     {
-        private readonly JwtSettings _jwtSettings;
+        private readonly JwtOptions _jwtOptions;
         private readonly IDbContext _dbContext;
 
-        public AuthentificationService(JwtSettings jwtSettings, IDbContext dbContext)
+        public AuthentificationService(JwtOptions jwtOptions, IDbContext dbContext)
         {
-            (_jwtSettings, _dbContext) = (jwtSettings, dbContext);
+            (_jwtOptions, _dbContext) = (jwtOptions, dbContext);
         }
 
         public async Task<AuthentificationResponse> LoginAsync(User user)
@@ -59,7 +59,7 @@ namespace SignatureWatch.UseCases.Features.Services
         private async Task<AuthentificationResponse> GenerateAuthentificationResponseForUserAsync(User user)
         {
             var jwtHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_jwtSettings.Secret);
+            var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);
 
             var claims = new List<Claim>
             {
@@ -68,12 +68,12 @@ namespace SignatureWatch.UseCases.Features.Services
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
-            {
+            {               
+                Issuer = _jwtOptions.Issuer,
+                Audience = _jwtOptions.Audience,
+                Expires = DateTime.UtcNow.Add(_jwtOptions.TokenLifeTime),
                 Subject = new ClaimsIdentity(claims),
-                Audience = "SignatureWatch",
-                Expires = DateTime.UtcNow.Add(_jwtSettings.TokenLifeTime),
-                SigningCredentials = 
-                new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = jwtHandler.CreateToken(tokenDescriptor);

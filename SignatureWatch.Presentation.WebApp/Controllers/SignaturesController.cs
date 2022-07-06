@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SignatureWatch.Presentation.WebApp.Controllers.Base;
 using SignatureWatch.UseCases.Contracts.DTO;
@@ -7,6 +8,7 @@ using SignatureWatch.UseCases.Features.Queries.SignatureQueries;
 
 namespace SignatureWatch.Presentation.WebApp.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class SignaturesController : ApiController
@@ -20,7 +22,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
         [HttpGet("{guid}")]
         public async Task<IActionResult> GetSignatureById(Guid guid)
         {
-            var signature = await Mediator.Send(new GetSignatureByIdQuery());
+            var signature = await Mediator.Send(new GetSignatureByIdQuery() { Guid = guid});
             if (signature == null)
                 return NoContent();
             else
@@ -30,7 +32,16 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateSignature([FromBody] SignatureDTO signatureDTO)
         {
-            return Ok(await Mediator.Send(new CreateSignatureCommand { SignatureDTO = signatureDTO }));
+            var result = await Mediator.Send(new CreateSignatureCommand { SignatureDTO = signatureDTO });
+
+            if (result.IsSuccess == true)
+            {
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
         }
 
         [HttpPut("{guid}")]

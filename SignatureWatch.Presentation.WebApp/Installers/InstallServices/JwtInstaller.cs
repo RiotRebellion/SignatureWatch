@@ -10,33 +10,31 @@ namespace SignatureWatch.Presentation.WebApp.Installers.InstallServices
     {
         public void InstallServices(IServiceCollection services, IConfiguration configuration)
         {
-            var jwtSettings = new JwtSettings();
-            configuration.Bind(nameof(jwtSettings), jwtSettings);
-            services.AddSingleton(jwtSettings);
+            var jwtOptions = new JwtOptions();
+            configuration.Bind(nameof(jwtOptions), jwtOptions);
+            services.AddSingleton(jwtOptions);
 
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings.Secret)),
-                ValidateIssuer = false,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtOptions.Secret)),
+                ValidateIssuer = true,
+                ValidIssuer = jwtOptions.Issuer,
                 ValidateAudience = false,
+                ValidAudience = jwtOptions.Audience,
                 RequireExpirationTime = false,
                 ValidateLifetime = true
             };
 
             services.AddSingleton(tokenValidationParameters);
 
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+            services.AddAuthentication("Bearer")
                 .AddJwtBearer(x =>
                 {
                     x.SaveToken = true;
                     x.TokenValidationParameters = tokenValidationParameters;
                 });
+            services.AddAuthorization();
         }
     }
 }

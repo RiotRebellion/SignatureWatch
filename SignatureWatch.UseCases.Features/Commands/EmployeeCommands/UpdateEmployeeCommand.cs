@@ -27,18 +27,23 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
             public async Task<BaseResponse> Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
             {
                 var existingEmployee = await _dbContext.Set<Employee>()
-                    .FirstOrDefaultAsync(x => x.Guid == request.Guid);
+                    .Where(x => x.Guid == request.Guid)
+                    .FirstOrDefaultAsync();
 
                 if (existingEmployee == null)
                     return await Task.FromResult(new BaseResponse
                     {
-                        Errors = new[] { "Нету нихуя такого" }
+                        Errors = new[] { "Нету такого" }
                     });
 
                 var employee = _mapper.Map<Employee>(request.EmployeeDTO);
-                employee.Guid = request.Guid;
+                existingEmployee.Name = employee.Name;
+                existingEmployee.Department = employee.Department;
+                existingEmployee.Post = employee.Post;
+                existingEmployee.EmployeeStatus = employee.EmployeeStatus;
 
-                _dbContext.Set<Employee>().Update(employee);
+
+                _dbContext.Set<Employee>().Update(existingEmployee);
                 await _dbContext.SaveChangesAsync();
                 return await Task.FromResult(new BaseResponse { IsSuccess = true }); 
             } 

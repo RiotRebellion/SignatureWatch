@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SignatureWatch.Presentation.WebApp.Controllers.Base;
 using SignatureWatch.UseCases.Contracts.DTO;
 using SignatureWatch.UseCases.Features.Commands.EmployeeCommands;
@@ -7,6 +8,7 @@ using SignatureWatch.UseCases.Features.Queries.SignatureQueries;
 
 namespace SignatureWatch.Presentation.WebApp.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class EmployeesController : ApiController
@@ -20,7 +22,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
         [HttpGet("{guid}")]
         public async Task<IActionResult> GetEmployeeById(Guid guid)
         {
-            var result = await Mediator.Send(new GetEmployeeByIdQuery());
+            var result = await Mediator.Send(new GetEmployeeByIdQuery() { Guid = guid});
             if (result == null)
                 return NoContent();
             else

@@ -11,7 +11,6 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations
         {
             builder.HasOne(p => p.Owner)
                 .WithMany(p => p.Signatures)
-                .HasForeignKey(p => p.OwnerId)
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }

@@ -17,7 +17,7 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
                     opt => opt.MapFrom(src => src.Department))
                 .ForMember(dest =>
                     dest.Post,
-                    opt => opt.MapFrom(src => src.Department))
+                    opt => opt.MapFrom(src => src.Post))
                 .ForMember(dest =>
                     dest.EmployeeStatus,
                     opt => opt.MapFrom(opt => opt.EmployeeStatus))
