@@ -1,6 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using SignatureWatch.Presentation.WebApp.Installers.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection;
 
 namespace SignatureWatch.Presentation.WebApp.Installers.InstallServices
 {
@@ -15,18 +16,26 @@ namespace SignatureWatch.Presentation.WebApp.Installers.InstallServices
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "SignatureWatch WebAPI",
-                    Name = "SignatureWatch",
+                    Name = "Authorization",
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT"
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    {new OpenApiSecurityScheme{Reference = new OpenApiReference
                     {
-                        Id = "Bearer",
-                        Type = ReferenceType.SecurityScheme
-                    }}, new List<string>()}
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
                 });
             });
         }
