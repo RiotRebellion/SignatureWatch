@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.Responses;
+using SignatureWatch.UseCases.Contracts.Responses.Base;
 using SignatureWatch.UseCases.Features.Options;
 using SignatureWatch.UseCases.Features.Services.Interfaces;
 using SignatureWatch.UseCases.Gateways;
@@ -37,14 +38,14 @@ namespace SignatureWatch.UseCases.Features.Services
             return await GenerateAuthentificationResponseForUserAsync(user);
         }
 
-        public async Task<AuthentificationResponse> RegisterAsync(User user)
+        public async Task<BaseResponse> RegisterAsync(User user)
         {
             var existingUser = await _dbContext.Set<User>().
                 FirstOrDefaultAsync(u => u.Username == user.Username && u.Email == user.Email);
 
             if (existingUser != null) 
             {
-                return new AuthentificationResponse
+                return new BaseResponse
                 {
                     Errors = new[] { "Пользователь с таким никнеймом или почтой уже существует" }
                 };
@@ -53,7 +54,10 @@ namespace SignatureWatch.UseCases.Features.Services
             await _dbContext.Set<User>().AddAsync(user);
             await _dbContext.SaveChangesAsync();
 
-            return await GenerateAuthentificationResponseForUserAsync(user);
+            return await Task.FromResult(new BaseResponse
+            {
+                IsSuccess = true
+            });
         }
 
         private async Task<AuthentificationResponse> GenerateAuthentificationResponseForUserAsync(User user)

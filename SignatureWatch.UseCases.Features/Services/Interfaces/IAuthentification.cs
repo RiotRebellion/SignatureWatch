@@ -1,5 +1,6 @@
 ﻿using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.Responses;
+using SignatureWatch.UseCases.Contracts.Responses.Base;
 
 namespace SignatureWatch.UseCases.Features.Services.Interfaces
 {
@@ -7,6 +8,6 @@ namespace SignatureWatch.UseCases.Features.Services.Interfaces
     {
         Task<AuthentificationResponse> LoginAsync(User user);
 
-        Task<AuthentificationResponse> RegisterAsync(User user); 
+        Task<BaseResponse> RegisterAsync(User user); 
     }
 }

@@ -2,16 +2,16 @@
 using MediatR;
 using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.DTO;
-using SignatureWatch.UseCases.Contracts.Responses;
+using SignatureWatch.UseCases.Contracts.Responses.Base;
 using SignatureWatch.UseCases.Features.Services.Interfaces;
 
 namespace SignatureWatch.UseCases.Features.Commands.UserCommands
 {
-    public class CreateUserCommand : IRequest<AuthentificationResponse>
+    public class CreateUserCommand : IRequest<BaseResponse>
     {
         public RegistrationDTO RegistrationDTO { get; set; }
 
-        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, AuthentificationResponse>
+        public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, BaseResponse>
         {
             private readonly IAuthentification _authentification;
             private readonly IMapper _mapper;
@@ -21,7 +21,7 @@ namespace SignatureWatch.UseCases.Features.Commands.UserCommands
                 (_authentification, _mapper) = (authentification, mapper);
             }
 
-            public async Task<AuthentificationResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+            public async Task<BaseResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
             {
                 var user = _mapper.Map<User>(request.RegistrationDTO);
 

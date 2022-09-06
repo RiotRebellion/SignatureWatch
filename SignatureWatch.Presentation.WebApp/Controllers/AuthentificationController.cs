@@ -1,5 +1,4 @@
-﻿
-
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SignatureWatch.Presentation.WebApp.Controllers.Base;
 using SignatureWatch.UseCases.Contracts.DTO;
@@ -14,12 +13,13 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
     {
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult> Login([FromBody] LoginDTO loginDTO)
+        public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
         {
             return Ok(await Mediator.Send(new LoginQuery { LoginDTO = loginDTO }));
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] RegistrationDTO registrationDTO)
         {
