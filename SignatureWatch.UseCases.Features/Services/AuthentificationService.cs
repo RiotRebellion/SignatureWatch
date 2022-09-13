@@ -85,7 +85,7 @@ namespace SignatureWatch.UseCases.Features.Services
             return await Task.FromResult(new AuthentificationResponse
             {
                 IsSuccess = true,
-                UserName = user.Username,
+                Username = user.Username,
                 Token = jwtHandler.WriteToken(token)
             });
         }
