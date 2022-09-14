@@ -24,10 +24,10 @@ namespace SignatureWatch.UseCases.Features.Queries.SignatureQueries
 
             public async Task<SignatureDetailedViewModel> Handle(GetSignatureByIdQuery request, CancellationToken cancellationToken)
             {
-                var employee = await _dbcontext.Set<Signature>()
+                var signature = await _dbcontext.Set<Signature>()
                     .Include(x => x.Owner)
                     .FirstOrDefaultAsync(x => x.Guid == request.Guid);
-                return _mapper.Map<SignatureDetailedViewModel>(employee);
+                return _mapper.Map<SignatureDetailedViewModel>(signature);
             }
         }
     }

@@ -2,8 +2,6 @@
 {
     public class SignatureDetailedViewModel : SignatureViewModel
     {
-        public string EmployeeDepartment { get; set; }
-
-        public string EmployeePost { get; set; }
+        public Guid OwnerGuid;
     }
 }

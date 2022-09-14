@@ -34,13 +34,8 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.ViewModels
             CreateMap<Signature, SignatureDetailedViewModel>()
                 .IncludeBase<Signature, SignatureViewModel>()
                 .ForMember(dest =>
-                    dest.EmployeeDepartment,
-                    opt => opt.MapFrom(src => src.Owner.Department))
-                .ForMember(dest =>
-                    dest.EmployeePost,
-                    opt => opt.MapFrom(src => src.Owner.Post));
-
-
+                    dest.OwnerGuid,
+                    opt => opt.MapFrom(src => src.OwnerGuid));
         }
     }
 }
