@@ -17,6 +17,6 @@ namespace SignatureWatch.UseCases.Contracts.DTO
 
         public SignatureTypeContract SignatureType { get; set; }
 
-        public EmployeeDTO Owner { get; set; }
+        public Guid OwnerGuid { get; set; }
     }
 }

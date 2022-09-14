@@ -27,7 +27,10 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
                     opt => opt.MapFrom(src => src.PrivateKeyEndDate))
                 .ForMember(dest =>
                     dest.SignatureType,
-                    opt => opt.MapFrom(src => src.SignatureType));
+                    opt => opt.MapFrom(src => src.SignatureType))
+                .ForMember(dest =>
+                    dest.OwnerGuid,
+                    opt => opt.MapFrom(src => src.OwnerGuid));
 
             //CreateMap<SignatureDTO, Signature>()
             //    .ForMember(dest =>

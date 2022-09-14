@@ -48,14 +48,12 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
 
                 var existingEmployee = await _dbContext.Set<Employee>()
                     .AsNoTracking()
-                    .Where(x => x.Name == data.Owner.Name &&
-                        x.Department == data.Owner.Department &&
-                        x.Post == data.Owner.Post)
+                    .Where(x => x.Guid == data.OwnerGuid)
                     .FirstOrDefaultAsync();
 
                 if (existingEmployee != null)
                 {
-                    existingSignature.OwnerId = existingEmployee.Guid;
+                    existingSignature.OwnerGuid = existingEmployee.Guid;
                 }
 
                 _dbContext.Set<Signature>().Update(existingSignature);

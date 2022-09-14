@@ -30,18 +30,14 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                 //Проверка существования пользователя
                 var existingEmployee = await _dbContext.Set<Employee>()
                     .FirstOrDefaultAsync(x =>
-                        x.Name == signature.Owner.Name &&
-                        x.Department == signature.Owner.Department);
+                        x.Guid == signature.OwnerGuid);
 
-                if (existingEmployee == null)
+                if(existingEmployee == null)
                 {
-                    await _dbContext.Set<Employee>().AddAsync(signature.Owner);
-                    await _dbContext.SaveChangesAsync();
-                }
-                else
-                {
-                    signature.OwnerId = existingEmployee.Guid;
-                    signature.Owner = null;
+                    return await Task.FromResult(new BaseResponse
+                    {
+                        Errors = new[] {"Такого пользователя не найдено"}
+                    });
                 }
 
                 //проверка существования подписи

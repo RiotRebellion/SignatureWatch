@@ -24,7 +24,7 @@ namespace SignatureWatch.UseCases.Features.Queries.SignatureQueries
             public async Task<IEnumerable<SignatureViewModel>> Handle(GetAllSignaturesByEmployee request, CancellationToken cancellationToken)
             {
                 var result = await _dbContext.Set<Signature>()
-                    .Where(x => x.OwnerId == request.Guid)
+                    .Where(x => x.OwnerGuid == request.Guid)
                     .ToListAsync();
 
                 return _mapper.Map<IEnumerable<SignatureViewModel>>(result);

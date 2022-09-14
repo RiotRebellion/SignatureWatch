@@ -25,7 +25,7 @@ namespace SignatureWatch.UseCases.Features.Validators
             RuleFor(x => x.SignatureType)
                 .IsInEnum().WithMessage("SerialNumber should not be empty");
 
-            RuleFor(x => x.Owner)
+            RuleFor(x => x.OwnerGuid)
                 .NotEmpty().WithMessage("Owner should not be empty");
         }
     }
