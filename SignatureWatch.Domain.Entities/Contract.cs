@@ -7,5 +7,7 @@ namespace SignatureWatch.Domain.Entities
         public string ContractNumber { get; set; }
 
         public DateTime Date { get; set; }
+
+        public ICollection<SoftwareLicense> SoftwareLicenses { get; set; }
     }
 }

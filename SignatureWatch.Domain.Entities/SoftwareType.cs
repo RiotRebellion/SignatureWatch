@@ -6,6 +6,8 @@ namespace SignatureWatch.Domain.Entities
     {
         public string Name { get; set; }
 
+        public ICollection<Software> Softwares { get; set; }
+
         public SoftwareLocation SoftwareLocation { get; set; }
     }
 }
