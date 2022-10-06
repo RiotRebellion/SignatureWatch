@@ -12,9 +12,25 @@ namespace SignatureWatch.Infrastructure.Persistence.Contexts
 
         }
 
+        DbSet<AccordanceSertificate> AccordanceSertificates { get; set; }
+
+        DbSet<Contract> Contracts { get; set; }
+
+        DbSet<Distribution> Distributions { get; set; }
+
         DbSet<Employee> Employees { get; set; }
 
+        DbSet<Formular> Formulars { get; set; }
+
         DbSet<Signature> Signatures { get; set; }
+
+        DbSet<Software> Softwares { get; set; }
+
+        DbSet<SoftwareLicense> SoftwareLicenses { get; set; }
+
+        DbSet<SoftwareType> SoftwareTypes { get; set; }
+
+        DbSet<Support> Supports { get; set; }
 
         DbSet<User> Users { get; set; }
 
