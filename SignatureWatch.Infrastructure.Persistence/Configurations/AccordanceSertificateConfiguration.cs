@@ -9,10 +9,7 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations
     {
         protected override void ConfigureOtherProperties(EntityTypeBuilder<AccordanceSertificate> builder)
         {
-            builder.HasOne(p => p.Formular)
-                .WithMany(p => p.AccordanceSertificates)
-                .HasForeignKey(p => p.FormularGuid)
-                .OnDelete(DeleteBehavior.SetNull);
+
         }
     }
 }

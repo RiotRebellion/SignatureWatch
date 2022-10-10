@@ -9,9 +9,7 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations
     {
         protected override void ConfigureOtherProperties(EntityTypeBuilder<Signature> builder)
         {
-            builder.HasOne(p => p.Owner)
-                .WithMany(p => p.Signatures)
-                .OnDelete(DeleteBehavior.SetNull);
+
         }
     }
 }

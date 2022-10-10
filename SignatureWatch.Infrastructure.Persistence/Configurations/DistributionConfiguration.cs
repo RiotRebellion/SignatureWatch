@@ -9,9 +9,9 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations
     {
         protected override void ConfigureOtherProperties(EntityTypeBuilder<Distribution> builder)
         {
-            builder.HasOne(p => p.Software)
+            builder.HasOne(p => p.Formular)
                 .WithOne(p => p.Distribution)
-                .HasForeignKey<Software>(p => p.DistributionGuid)
+                .HasForeignKey<Formular>(p => p.DistributionGuid)
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }

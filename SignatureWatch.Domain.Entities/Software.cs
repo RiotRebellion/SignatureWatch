@@ -12,8 +12,6 @@ namespace SignatureWatch.Domain.Entities
 
         public SoftwareType SoftwareType { get; set; }
 
-        public Guid? DistributionGuid { get; set; }
-
         public Distribution? Distribution { get; set; }
 
         public ICollection<SoftwareLicense> SoftwareLicenses { get; set; }

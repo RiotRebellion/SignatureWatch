@@ -9,20 +9,7 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations
     {
         protected override void ConfigureOtherProperties(EntityTypeBuilder<SoftwareLicense> builder)
         {
-            builder.HasOne(p => p.Software)
-                .WithMany(p => p.SoftwareLicenses)
-                .HasForeignKey(p => p.SoftwareGuid)
-                .OnDelete(DeleteBehavior.SetNull);
 
-            builder.HasOne(p => p.Support)
-                .WithMany(p => p.SoftwareLicenses)
-                .HasForeignKey(p => p.SupportGuid)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            builder.HasOne(p => p.Contract)
-                .WithMany(p => p.SoftwareLicenses)
-                .HasForeignKey(p => p.ContractGuid)
-                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

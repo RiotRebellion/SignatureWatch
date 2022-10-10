@@ -11,6 +11,7 @@ namespace SignatureWatch.Infrastructure.Persistence.Configurations
         {
             builder.HasMany(p => p.SoftwareLicenses)
                 .WithOne(p => p.Contract)
+                .HasForeignKey(p => p.ContractGuid)
                 .OnDelete(DeleteBehavior.SetNull);
         }
     }
