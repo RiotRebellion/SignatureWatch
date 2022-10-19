@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
 using SignatureWatch.Domain.Entities;
 using SignatureWatch.UseCases.Contracts.Responses;
 using SignatureWatch.UseCases.Contracts.Responses.Base;
@@ -24,8 +23,8 @@ namespace SignatureWatch.UseCases.Features.Services
 
         public async Task<AuthentificationResponse> LoginAsync(User user)
         {
-            var isUserExist = await _dbContext.Set<User>()
-                .FirstOrDefaultAsync(u => u.Username == user.Username && u.Password == user.Password); 
+            var isUserExist = _dbContext.Set<User>()
+                .FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password); 
 
             if (isUserExist == null)
             {
@@ -40,8 +39,8 @@ namespace SignatureWatch.UseCases.Features.Services
 
         public async Task<BaseResponse> RegisterAsync(User user)
         {
-            var existingUser = await _dbContext.Set<User>().
-                FirstOrDefaultAsync(u => u.Username == user.Username && u.Email == user.Email);
+            var existingUser = _dbContext.Set<User>().
+                FirstOrDefault(u => u.Username == user.Username && u.Email == user.Email);
 
             if (existingUser != null) 
             {
@@ -51,13 +50,13 @@ namespace SignatureWatch.UseCases.Features.Services
                 };
             }
 
-            await _dbContext.Set<User>().AddAsync(user);
+            _dbContext.Set<User>().Add(user);
             await _dbContext.SaveChangesAsync();
 
-            return await Task.FromResult(new BaseResponse
+            return new BaseResponse
             {
                 IsSuccess = true
-            });
+            };
         }
 
         private async Task<AuthentificationResponse> GenerateAuthentificationResponseForUserAsync(User user)

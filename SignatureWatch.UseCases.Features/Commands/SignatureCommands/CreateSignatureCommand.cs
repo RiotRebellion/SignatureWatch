@@ -28,38 +28,36 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                 var signature = _mapper.Map<Signature>(request.SignatureDTO);
 
                 //Проверка существования пользователя
-                var existingEmployee = await _dbContext.Set<Employee>()
-                    .FirstOrDefaultAsync(x =>
-                        x.Guid == signature.OwnerGuid);
+                var existingEmployee = _dbContext.Set<Employee>()
+                    .FirstOrDefault(x => x.Guid == signature.OwnerGuid);
 
                 if(existingEmployee == null)
                 {
-                    return await Task.FromResult(new BaseResponse
+                    return new BaseResponse
                     {
                         Errors = new[] {"Такого пользователя не найдено"}
-                    });
+                    };
                 }
 
                 //проверка существования подписи
-                var existingSignature = await _dbContext.Set<Signature>()
-                    .FirstOrDefaultAsync(x =>
-                        x.SerialNumber == signature.SerialNumber);
+                var existingSignature = _dbContext.Set<Signature>()
+                    .FirstOrDefault(x => x.SerialNumber == signature.SerialNumber);
 
                 if (existingSignature == null)
                 {
-                    await _dbContext.Set<Signature>().AddAsync(signature);
+                    _dbContext.Set<Signature>().Add(signature);
                     await _dbContext.SaveChangesAsync();
 
-                    return await Task.FromResult(new BaseResponse
+                    return new BaseResponse
                     {
                         IsSuccess = true
-                    });
+                    };
                 }
 
-                return await Task.FromResult(new BaseResponse
+                return new BaseResponse
                 {
                     Errors = new[] {"Подпись уже существует"}
-                });
+                };
             }
         }
     }

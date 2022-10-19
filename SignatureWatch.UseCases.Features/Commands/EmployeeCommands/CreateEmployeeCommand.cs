@@ -27,22 +27,22 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
             {
                 var employee = _mapper.Map<Employee>(request.EmployeeDTO);
 
-                var existingEmployee = await _dbContext.Set<Employee>()
-                    .FirstOrDefaultAsync(x => 
+                var existingEmployee = _dbContext.Set<Employee>()
+                    .FirstOrDefault(x => 
                     x.Name == employee.Name && 
                     x.Department == employee.Department &&
                     x.Post == employee.Post);
 
                 if (existingEmployee == null)
                 {
-                    await _dbContext.Set<Employee>().AddAsync(employee);
+                    _dbContext.Set<Employee>().Add(employee);
                     await _dbContext.SaveChangesAsync();
-                    return await Task.FromResult(new BaseResponse { IsSuccess = true });
+                    return new BaseResponse { IsSuccess = true };
                 }
-                return await Task.FromResult(new BaseResponse
+                return new BaseResponse
                 {
                     Errors = new[] { "Сотрудник с такими данными уже существует" }
-                });
+                };
             }
         }
     }

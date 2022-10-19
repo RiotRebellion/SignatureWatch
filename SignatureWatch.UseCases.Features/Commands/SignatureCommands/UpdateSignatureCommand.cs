@@ -25,17 +25,16 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
             }
             public async Task<BaseResponse> Handle(UpdateSignatureCommand request, CancellationToken cancellationToken)
             {
-                var existingSignature = await _dbContext.Set<Signature>()
+                var existingSignature = _dbContext.Set<Signature>()
                     .Include(x => x.Owner)
-                    .Where(x => x.Guid == request.Guid)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefault(x => x.Guid == request.Guid);
 
                 if (existingSignature == null)
                 {
-                    return await Task.FromResult(new BaseResponse
+                    return new BaseResponse
                     {
                         Errors = new[] { "Нет такого" }
-                    });
+                    };
                 }
 
                 var data = _mapper.Map<Signature>(request.SignatureDTO);
@@ -46,10 +45,9 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                 existingSignature.PrivateKeyStartDate = data.PrivateKeyStartDate;
                 existingSignature.PrivateKeyEndDate = data.PrivateKeyEndDate;
 
-                var existingEmployee = await _dbContext.Set<Employee>()
+                var existingEmployee = _dbContext.Set<Employee>()
                     .AsNoTracking()
-                    .Where(x => x.Guid == data.OwnerGuid)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefault(x => x.Guid == data.OwnerGuid);
 
                 if (existingEmployee != null)
                 {
@@ -58,7 +56,7 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
 
                 _dbContext.Set<Signature>().Update(existingSignature);
                 await _dbContext.SaveChangesAsync();
-                return await Task.FromResult(new BaseResponse { IsSuccess = true });
+                return new BaseResponse { IsSuccess = true };
             }
         }
     }
