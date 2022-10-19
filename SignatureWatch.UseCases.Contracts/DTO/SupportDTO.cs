@@ -6,7 +6,7 @@
 
         public string Name { get; set; }
 
-        public string ExpirationDate { get; set; }
+        public DateTime ExpirationDate { get; set; }
 
         public string? PhoneNumber { get; set; }
 
