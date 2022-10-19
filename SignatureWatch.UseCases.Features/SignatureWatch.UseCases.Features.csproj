@@ -25,7 +25,6 @@
     <Folder Include="Queries\ContractQueries\" />
     <Folder Include="Queries\DistributionQueries\" />
     <Folder Include="Queries\FormularQueries\" />
-    <Folder Include="Queries\SoftwareTypeQueries\" />
     <Folder Include="Queries\SoftwareLicenseQueries\" />
     <Folder Include="Queries\SoftwareQueries\" />
   </ItemGroup>
