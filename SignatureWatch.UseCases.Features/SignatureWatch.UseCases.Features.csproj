@@ -21,4 +21,13 @@
     <ProjectReference Include="..\SignatureWatch.UseCases.Gateways\SignatureWatch.UseCases.Gateways.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queries\ContractQueries\" />
+    <Folder Include="Queries\DistributionQueries\" />
+    <Folder Include="Queries\FormularQueries\" />
+    <Folder Include="Queries\SoftwareTypeQueries\" />
+    <Folder Include="Queries\SoftwareLicenseQueries\" />
+    <Folder Include="Queries\SoftwareQueries\" />
+  </ItemGroup>
+
 </Project>
