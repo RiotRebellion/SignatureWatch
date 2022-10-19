@@ -20,8 +20,7 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
                     opt => opt.MapFrom(src => src.Post))
                 .ForMember(dest =>
                     dest.EmployeeStatus,
-                    opt => opt.MapFrom(opt => opt.EmployeeStatus))
-                .ReverseMap();
+                    opt => opt.MapFrom(opt => opt.EmployeeStatus));
         }
     }
 }
