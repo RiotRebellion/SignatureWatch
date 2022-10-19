@@ -53,11 +53,14 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                         IsSuccess = true
                     };
                 }
-
-                return new BaseResponse
+                else
                 {
-                    Errors = new[] {"Подпись уже существует"}
-                };
+                    return new BaseResponse
+                    {
+                        Errors = new[] { "Подпись уже существует" }
+                    };
+                }
+                
             }
         }
     }

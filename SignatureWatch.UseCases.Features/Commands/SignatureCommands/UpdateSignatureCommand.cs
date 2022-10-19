@@ -36,27 +36,29 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                         Errors = new[] { "Нет такого" }
                     };
                 }
-
-                var data = _mapper.Map<Signature>(request.SignatureDTO);
-
-                existingSignature.SerialNumber = data.SerialNumber;
-                existingSignature.PublicKeyStartDate = data.PublicKeyStartDate;
-                existingSignature.PublicKeyEndDate = data.PublicKeyEndDate;
-                existingSignature.PrivateKeyStartDate = data.PrivateKeyStartDate;
-                existingSignature.PrivateKeyEndDate = data.PrivateKeyEndDate;
-
-                var existingEmployee = _dbContext.Set<Employee>()
-                    .AsNoTracking()
-                    .FirstOrDefault(x => x.Guid == data.OwnerGuid);
-
-                if (existingEmployee != null)
+                else
                 {
-                    existingSignature.OwnerGuid = existingEmployee.Guid;
-                }
+                    var data = _mapper.Map<Signature>(request.SignatureDTO);
 
-                _dbContext.Set<Signature>().Update(existingSignature);
-                await _dbContext.SaveChangesAsync();
-                return new BaseResponse { IsSuccess = true };
+                    existingSignature.SerialNumber = data.SerialNumber;
+                    existingSignature.PublicKeyStartDate = data.PublicKeyStartDate;
+                    existingSignature.PublicKeyEndDate = data.PublicKeyEndDate;
+                    existingSignature.PrivateKeyStartDate = data.PrivateKeyStartDate;
+                    existingSignature.PrivateKeyEndDate = data.PrivateKeyEndDate;
+
+                    var existingEmployee = _dbContext.Set<Employee>()
+                        .AsNoTracking()
+                        .FirstOrDefault(x => x.Guid == data.OwnerGuid);
+
+                    if (existingEmployee != null)
+                    {
+                        existingSignature.OwnerGuid = existingEmployee.Guid;
+                    }
+
+                    _dbContext.Set<Signature>().Update(existingSignature);
+                    await _dbContext.SaveChangesAsync();
+                    return new BaseResponse { IsSuccess = true };
+                }            
             }
         }
     }

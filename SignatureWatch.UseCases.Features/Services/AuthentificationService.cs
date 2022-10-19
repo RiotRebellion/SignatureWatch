@@ -33,8 +33,10 @@ namespace SignatureWatch.UseCases.Features.Services
                     Errors = new[] { "Неправильный логин или пароль" }
                 };
             }
-
-            return await GenerateAuthentificationResponseForUserAsync(user);
+            else
+            {
+                return await GenerateAuthentificationResponseForUserAsync(user);
+            }          
         }
 
         public async Task<BaseResponse> RegisterAsync(User user)
@@ -49,14 +51,17 @@ namespace SignatureWatch.UseCases.Features.Services
                     Errors = new[] { "Пользователь с таким никнеймом или почтой уже существует" }
                 };
             }
-
-            _dbContext.Set<User>().Add(user);
-            await _dbContext.SaveChangesAsync();
-
-            return new BaseResponse
+            else
             {
-                IsSuccess = true
-            };
+                _dbContext.Set<User>().Add(user);
+                await _dbContext.SaveChangesAsync();
+
+                return new BaseResponse
+                {
+                    IsSuccess = true
+                };
+            }
+            
         }
 
         private async Task<AuthentificationResponse> GenerateAuthentificationResponseForUserAsync(User user)

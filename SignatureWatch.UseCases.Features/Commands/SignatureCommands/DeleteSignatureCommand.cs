@@ -30,9 +30,12 @@ namespace SignatureWatch.UseCases.Features.Commands.SignatureCommands
                         Errors = new[] { "Нечего удалять" }
                     };
                 }
-                _dbContext.Set<Signature>().Remove(signature);
-                await _dbContext.SaveChangesAsync();
-                return new BaseResponse() { IsSuccess = true};
+                else
+                {
+                    _dbContext.Set<Signature>().Remove(signature);
+                    await _dbContext.SaveChangesAsync();
+                    return new BaseResponse() { IsSuccess = true };
+                }
             }
         }
     }

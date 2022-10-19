@@ -30,21 +30,28 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
                     .FirstOrDefault(x => x.Guid == request.Guid);
 
                 if (existingEmployee == null)
+                {
                     return new BaseResponse
                     {
                         Errors = new[] { "Нету такого" }
                     };
+                }
+                else
+                {
+                    var employee = _mapper.Map<Employee>(request.EmployeeDTO);
+                    existingEmployee.Name = employee.Name;
+                    existingEmployee.Department = employee.Department;
+                    existingEmployee.Post = employee.Post;
+                    existingEmployee.EmployeeStatus = employee.EmployeeStatus;
 
-                var employee = _mapper.Map<Employee>(request.EmployeeDTO);
-                existingEmployee.Name = employee.Name;
-                existingEmployee.Department = employee.Department;
-                existingEmployee.Post = employee.Post;
-                existingEmployee.EmployeeStatus = employee.EmployeeStatus;
-
-
-                _dbContext.Set<Employee>().Update(existingEmployee);
-                await _dbContext.SaveChangesAsync();
-                return new BaseResponse { IsSuccess = true }; 
+                    _dbContext.Set<Employee>().Update(existingEmployee);
+                    await _dbContext.SaveChangesAsync();
+                    return new BaseResponse 
+                    { 
+                        IsSuccess = true 
+                    };
+                }
+                
             } 
         }
     }

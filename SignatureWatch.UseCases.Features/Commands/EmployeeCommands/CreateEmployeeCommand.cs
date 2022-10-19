@@ -39,10 +39,13 @@ namespace SignatureWatch.UseCases.Features.Commands.EmployeeCommands
                     await _dbContext.SaveChangesAsync();
                     return new BaseResponse { IsSuccess = true };
                 }
-                return new BaseResponse
+                else
                 {
-                    Errors = new[] { "Сотрудник с такими данными уже существует" }
-                };
+                    return new BaseResponse
+                    {
+                        Errors = new[] { "Сотрудник с такими данными уже существует" }
+                    };
+                }
             }
         }
     }
