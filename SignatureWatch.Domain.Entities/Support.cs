@@ -14,6 +14,6 @@ namespace SignatureWatch.Domain.Entities
 
         public string? Email { get; set; }
 
-        public ICollection<SoftwareLicense> SoftwareLicenses { get; set; }
+        public ICollection<SoftwareLicense>? SoftwareLicenses { get; set; }
     }
 }

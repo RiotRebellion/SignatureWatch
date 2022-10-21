@@ -12,11 +12,11 @@ namespace SignatureWatch.Domain.Entities
 
         public string ProtectionKey { get; set; }
 
-        public Guid DistributionGuid { get; set; }
+        public Guid? DistributionGuid { get; set; }
 
-        public Distribution Distribution { get; set; }
+        public Distribution? Distribution { get; set; }
 
-        public ICollection<AccordanceSertificate> AccordanceSertificates { get; set; }
+        public ICollection<AccordanceSertificate>? AccordanceSertificates { get; set; }
 
 
     }

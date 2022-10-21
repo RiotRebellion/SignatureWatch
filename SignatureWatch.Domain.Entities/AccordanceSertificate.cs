@@ -12,8 +12,8 @@ namespace SignatureWatch.Domain.Entities
 
         public DateTime? ProlongDate { get; set; }
 
-        public Guid FormularGuid { get; set; }
+        public Guid? FormularGuid { get; set; }
 
-        public Formular Formular { get; set; }
+        public Formular? Formular { get; set; }
     }
 }

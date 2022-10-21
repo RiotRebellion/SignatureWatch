@@ -10,8 +10,8 @@ namespace SignatureWatch.Domain.Entities
 
         public Formular? Formular { get; set; }
 
-        public Guid SoftwareGuid { get; set; }
+        public Guid? SoftwareGuid { get; set; }
 
-        public Software Software { get; set; }
+        public Software? Software { get; set; }
     }
 }

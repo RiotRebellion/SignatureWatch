@@ -10,17 +10,17 @@ namespace SignatureWatch.Domain.Entities
 
         public DateTime ExpirationDate { get; set; }
 
-        public Guid ContractGuid { get; set; }
+        public Guid? ContractGuid { get; set; }
 
-        public Contract Contract { get; set; }
+        public Contract? Contract { get; set; }
 
-        public Guid SoftwareGuid { get; set; }
+        public Guid? SoftwareGuid { get; set; }
 
-        public Software Software { get; set; }
+        public Software? Software { get; set; }
 
         public Guid? SupportGuid { get; set; }
 
-        public Support Support { get; set; }
+        public Support? Support { get; set; }
 
     }
 }

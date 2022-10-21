@@ -8,6 +8,6 @@ namespace SignatureWatch.Domain.Entities
 
         public DateTime Date { get; set; }
 
-        public ICollection<SoftwareLicense> SoftwareLicenses { get; set; }
+        public ICollection<SoftwareLicense>? SoftwareLicenses { get; set; }
     }
 }
