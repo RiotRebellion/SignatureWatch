@@ -20,7 +20,7 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.ViewModels
                     opt => opt.MapFrom(src => src.SoftwareType.Name))
                 .ForMember(dest =>
                     dest.SoftwareLocation,
-                    opt => opt.MapFrom(src => src.SoftwareType))
+                    opt => opt.MapFrom(src => src.SoftwareType.SoftwareLocation))
                 .ForMember(dest =>
                     dest.DistributionNumber,
                     opt => opt.MapFrom(src => src.Distribution.Number));
