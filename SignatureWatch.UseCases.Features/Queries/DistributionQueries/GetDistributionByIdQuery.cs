@@ -25,6 +25,8 @@ namespace SignatureWatch.UseCases.Features.Queries.DistributionQueries
             public async Task<DistributionViewModel> Handle(GetDistributionByIdQuery request, CancellationToken cancellationToken)
             {
                 var distribution = await _dbContext.Set<Distribution>()
+                    .Include(x => x.Formular)
+                    .Include(x => x.Software)
                     .FirstOrDefaultAsync(x => x.Guid == request.Guid);
                 return _mapper.Map<DistributionViewModel>(distribution);
             }

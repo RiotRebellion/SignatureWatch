@@ -22,7 +22,10 @@ namespace SignatureWatch.UseCases.Features.Queries.DistributionQueries
 
             public async Task<IEnumerable<DistributionViewModel>> Handle(GetAllDistributionsQuery request, CancellationToken cancellationToken)
             {
-                var distributions = await _dbContext.Set<Distribution>().ToListAsync();
+                var distributions = await _dbContext.Set<Distribution>()
+                    .Include(x => x.Formular)
+                    .Include(x => x.Software)
+                    .ToListAsync();
                 return _mapper.Map<IEnumerable<DistributionViewModel>>(distributions);
             }
         }
