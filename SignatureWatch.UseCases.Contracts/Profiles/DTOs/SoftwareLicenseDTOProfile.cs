@@ -4,14 +4,14 @@ using SignatureWatch.UseCases.Contracts.DTO;
 
 namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
 {
-    public class SoftwareLicenceDTOProfile : Profile
+    public class SoftwareLicenseDTOProfile : Profile
     {
-        public SoftwareLicenceDTOProfile()
+        public SoftwareLicenseDTOProfile()
         {
             CreateMap<SoftwareLicenseDTO, SoftwareLicense>()
                 .ForMember(dest =>
                     dest.LicenseNumber,
-                    opt => opt.MapFrom(src => src.LicenceNumber))
+                    opt => opt.MapFrom(src => src.LicenseNumber))
                 .ForMember(dest =>
                     dest.AcquisitionDate,
                     opt => opt.MapFrom(src => src.AcquisitionDate))

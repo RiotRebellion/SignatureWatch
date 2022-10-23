@@ -2,7 +2,7 @@
 {
     public class SoftwareLicenseDTO
     {
-        public string LicenceNumber { get; set; }
+        public string LicenseNumber { get; set; }
 
         public DateTime AcquisitionDate { get; set; }
 
