@@ -8,7 +8,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SoftwareTypeController : ApiController
+    public class SoftwareTypesController : ApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetAllSoftwareType()

@@ -9,7 +9,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SupportController : ApiController
+    public class SupportsController : ApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetAllSupport()

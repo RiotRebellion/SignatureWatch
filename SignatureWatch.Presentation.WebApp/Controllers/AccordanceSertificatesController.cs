@@ -8,7 +8,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AccordanceSertificateController : ApiController
+    public class AccordanceSertificatesController : ApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetAllAccordanceSertificates()

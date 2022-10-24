@@ -8,7 +8,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DistributionController : ApiController
+    public class DistributionsController : ApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetAllDistributions()

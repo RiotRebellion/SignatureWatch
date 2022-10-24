@@ -8,7 +8,7 @@ namespace SignatureWatch.Presentation.WebApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FormularController : ApiController
+    public class FormularsController : ApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetAllFormulars()
