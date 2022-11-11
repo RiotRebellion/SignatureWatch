@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SignatureWatch.Presentation.WebApp.Controllers.Base;
 using SignatureWatch.UseCases.Contracts.DTO;
 using SignatureWatch.UseCases.Features.Commands.AccordanceSertificateCommands;
@@ -6,6 +7,7 @@ using SignatureWatch.UseCases.Features.Queries.AccordanceSertificateQueries;
 
 namespace SignatureWatch.Presentation.WebApp.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class AccordanceSertificatesController : ApiController

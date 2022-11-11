@@ -7,6 +7,7 @@ using SignatureWatch.UseCases.Features.Queries.SupportQueries;
 
 namespace SignatureWatch.Presentation.WebApp.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class SupportsController : ApiController
