@@ -8,7 +8,7 @@ namespace SignatureWatch.UseCases.Contracts.Profiles.DTOs
     {
         public EmployeeDTOProfile()
         {
-            CreateMap<Employee, EmployeeDTO>()
+            CreateMap<EmployeeDTO, Employee>()
                 .ForMember(dest =>
                     dest.Name,
                     opt => opt.MapFrom(src => src.Name))
